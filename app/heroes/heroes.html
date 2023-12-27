@@ -1,0 +1,10 @@
+<div>
+  <h2>List of heroes</h2>
+  <ul>
+    <li ng-repeat="hero in $ctrl.heroes">{{hero.name.first + ' ' + hero.name.last}}</li>
+  </ul>
+  <p>
+    <p ng-bind="$ctrl.heroes[0].results"></p>
+    Showing of 'interpolate' filter: {{ 'Current version is v%VERSION%.' | interpolate }}
+  </p>
+</div>

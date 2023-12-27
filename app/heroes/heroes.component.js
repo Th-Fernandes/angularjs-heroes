@@ -5,16 +5,14 @@ angular
     controller: [
       'HeroesService',
       function (HeroesService) {
-        if(HeroesService.getValue().length === 0)HeroesService.setValue();
-        
-        this.heroes = HeroesService.getValue()
-        console.log()
+        this.heroes = HeroesService.result
 
-        // .$promise.then((heroes) => {
-        //   console.log(heroes)
-        //   this.heroes = heroes.results
-        // });
-       
+        // HeroesService.add({
+        //   name: {
+        //     first: 'Thiago',
+        //     last: 'Carvalho'
+        //   }
+        // })
       }
     ]
   })

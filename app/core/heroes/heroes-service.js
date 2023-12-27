@@ -6,19 +6,17 @@ angular
       const self = this
       self.storedValue = [];
 
+      $resource('https://randomuser.me/api/?results=5').get().$promise
+        .then(heroes => self.storedValue.push(...heroes.results))
+
+        function addNewHero(hero) {
+          self.storedValue.push(hero)
+        }
+      
+      
       return {
-        setValue: () => $resource('https://randomuser.me/api/?results=5').get(null, heroes => {
-            self.storedValue = heroes.results
-          }),
-        getValue: () => self.storedValue
-      }
-
-      // if(self.storedValue.length === 0) console.log('there is no value :(')
-
-      // $resource('https://randomuser.me/api/?results=5').get(null, heroes => {
-      //   this.storedValue = heroes.results
-      // })
-
-      // return self.storedValue
+        result: self.storedValue,
+        add: addNewHero
+      }      
     } 
   ])

@@ -11,7 +11,7 @@ angular
         }
 
         this.addNewHero = () => {
-          HeroesService.add({ name: this.name })
+          HeroesService.addNewHero({ name: this.name })
           this.name = {}
         }
       } 

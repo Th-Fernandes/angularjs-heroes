@@ -5,8 +5,7 @@ angular
     controller: [
       'HeroesService',
       function (HeroesService, uuid) {
-        console.log(uuid)
-        this.heroes = HeroesService.result 
+        this.heroes = HeroesService.storedValue
       }
     ]
   })

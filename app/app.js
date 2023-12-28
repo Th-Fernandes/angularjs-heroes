@@ -14,3 +14,4 @@ angular
 
     $routeProvider.otherwise({redirectTo: '/dashboard'});
 }]);
+

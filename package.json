@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "description": "A starter project for AngularJS",
   "repository": "https://github.com/angular/angular-seed",
+  "type": "commonjs",
   "license": "MIT",
   "dependencies": {
     "angular": "^1.7.5",

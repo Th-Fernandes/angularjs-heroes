@@ -7,12 +7,13 @@ angular
       storedValue = [];
   
       constructor($resource) {
+        console.log(uuidv4())
         $resource(this.heroesEndPoint).get().$promise
           .then(heroes => this.storedValue.push(...heroes.results));
       }
   
       addNewHero(hero) {
-        this.storedValue.push(hero);
+        this.storedValue.push({...hero, login: { uuid: uuidv4() }});
       }
   
       getLoginUuid(uuid) {

@@ -1,0 +1,16 @@
+<form>
+  <h2>create new hero</h2>
+
+  <div>
+    {{$ctrl.name.first}}
+    <label for="">first name</label>
+    <input type="text" ng-model="$ctrl.name.first" />
+  </div>
+
+  <div>
+    <label for="">last name</label>
+    <input type="text" ng-model="$ctrl.name.last" />
+  </div>
+
+  <button type="submit" ng-click="$ctrl.addNewHero()">create</button>
+</form>

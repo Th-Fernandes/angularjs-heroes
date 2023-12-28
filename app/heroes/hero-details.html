@@ -1,0 +1,44 @@
+<section ng-if="$ctrl.hero">
+  <img
+    ng-src="{{$ctrl.hero.picture.large}}"
+    ng-alt="{{$ctrl.hero.name.first}} {{$ctrl.hero.name.last}} picture"
+  />
+  <h2>{{$ctrl.hero.name.first}} {{$ctrl.hero.name.last}} details</h2>
+
+  <ul>
+    <li>
+      <div>
+        <h3>Contacts</h3>
+
+        <ul>
+          <li>{{$ctrl.hero.cell}}</li>
+          <li>{{$ctrl.hero.email}}</li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+      <div>
+        <h3>General info</h3>
+
+        <ul>
+          <li>gender: {{$ctrl.hero.gender}}</li>
+          <li>
+            location: {{$ctrl.hero.location.city}},
+            {{$ctrl.hero.location.state}} - {{$ctrl.hero.location.country}}
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2>Hero not found</h2>
+  <p>ops! it looks like the hero you are look for does not exists or it is unavailable</p>
+  <button>
+    <a href="#!/heroes">
+      go back to heroes page
+    </a>
+  </button>
+</section>

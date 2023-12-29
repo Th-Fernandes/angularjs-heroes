@@ -5,14 +5,28 @@ angular
     controller: [
       'HeroesService',
       function(HeroesService) {
-        this.name = {
-          first: '',
-          last: ''
+        this.name = { first: '', last: ''};
+        this.gender = '';
+        this.email = '';
+        this.cell = '';''
+
+
+        this.addNewHero = () => { 
+          HeroesService.addNewHero({ 
+            name: this.name, 
+            gender: this.gender,
+            email: this.email,
+            cell: this.cell
+          })
+          this.clearInputs();
         }
 
-        this.addNewHero = () => {
-          HeroesService.addNewHero({ name: this.name })
-          this.name = {}
+
+        this.clearInputs = () => {
+          this.name = { first: '', last: ''};
+          this.gender = '';
+          this.email = '';
+          this.cell = '';
         }
       } 
     ]

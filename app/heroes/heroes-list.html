@@ -2,8 +2,8 @@
   <h2>List of heroes</h2>
   <ul>
     <li ng-repeat="hero in $ctrl.heroes">
-      <a href="#!/heroes/{{hero.login.uuid}}">
-        {{hero.login.uuid || 'no id :C'}} - {{hero.name.first + ' ' + hero.name.last}}
+      <a ng-href="#!/heroes/{{hero.login.uuid}}">
+        {{hero.name.first + ' ' + hero.name.last}}
       </a>
     </li>
   </ul>

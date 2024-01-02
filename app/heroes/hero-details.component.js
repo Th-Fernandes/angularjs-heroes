@@ -5,7 +5,7 @@ angular
     controller: [
       '$routeParams', 'HeroesService',
       function($routeParams, HeroesService) {
-        this.hero = HeroesService.getLoginUuid($routeParams.uuid)
+        this.hero = HeroesService.findUserByUuid($routeParams.uuid);
       }
     ]
   })

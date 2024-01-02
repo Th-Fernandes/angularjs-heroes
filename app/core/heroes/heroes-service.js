@@ -3,39 +3,20 @@ angular
   .factory('HeroesService', [
     '$resource',
     class HeroesService {
-      HEROES_ENDPOINT = 'https://randomuser.me/api/?results=5';
       storedValue = [];
       lastHero = {}
   
       constructor($resource) {
-        this.$resource = $resource;
+        const HEROES_ENDPOINT = 'https://randomuser.me/api/?results=5';
 
-        $resource(this.HEROES_ENDPOINT).get().$promise
-          .then(heroes => {
-            this.storedValue.push(...heroes.results);
-            const lastHero = heroes.results.at(-1);
-            Object.assign(this.lastHero, lastHero);
-          });
+        $resource(HEROES_ENDPOINT)
+          .get(heroes => this.#storeHeroesOnState(heroes));
+      }
 
-        this.storedHeroes = $resource(this.HEROES_ENDPOINT,
-          null,
-          {
-            get: {
-              method: 'GET',
-              isArray: true,
-              transformResponse: res => {
-                res = JSON.parse(res);
-                return res.results;
-              }
-            },
-            getLast: {
-              method: 'GET',
-              transformResponse: (res) => {
-                res = JSON.parse(res);
-                return res.results.at(-1);
-              }
-            }
-          })
+      #storeHeroesOnState(heroes) {
+        this.storedValue.push(...heroes.results);
+        const lastHero = heroes.results.at(-1);
+        Object.assign(this.lastHero, lastHero);
       }
 
       addNewHero(hero) {
@@ -43,7 +24,7 @@ angular
         Object.assign(this.lastHero, hero);
       }
 
-      getLoginUuid(uuid) {
+      findUserByUuid(uuid) {
         return this.storedValue.find(hero => hero.login.uuid === uuid)
       }
     }

@@ -3,7 +3,7 @@ angular
   .factory('HeroesService', [
     '$resource',
     class HeroesService {
-      storedValue = [];
+      heroes = [];
       lastHero = {}
   
       constructor($resource) {
@@ -14,18 +14,18 @@ angular
       }
 
       #storeHeroesOnState(heroes) {
-        this.storedValue.push(...heroes.results);
+        this.heroes.push(...heroes.results);
         const lastHero = heroes.results.at(-1);
         Object.assign(this.lastHero, lastHero);
       }
 
       addNewHero(hero) {
-        this.storedValue.push({...hero, login: { uuid: uuidv4() }});
+        this.heroes.push({...hero, login: { uuid: uuidv4() }});
         Object.assign(this.lastHero, hero);
       }
 
       findUserByUuid(uuid) {
-        return this.storedValue.find(hero => hero.login.uuid === uuid)
+        return this.heroes.find(hero => hero.login.uuid === uuid)
       }
     }
   ])

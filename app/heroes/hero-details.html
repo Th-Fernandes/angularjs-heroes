@@ -1,8 +1,10 @@
 <section ng-if="$ctrl.hero">
+  <p ng-if="!$ctrl.hero.picture">loading...</p>
   <img
     ng-src="{{$ctrl.hero.picture.large}}"
     ng-alt="{{$ctrl.hero.name.first}} {{$ctrl.hero.name.last}} picture"
   />
+
   <h2>{{$ctrl.hero.name.first}} {{$ctrl.hero.name.last}} details</h2>
 
   <ul>

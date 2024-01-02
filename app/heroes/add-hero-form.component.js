@@ -4,15 +4,18 @@ angular
     templateUrl: 'heroes/add-hero-form.html',
     controller: [
       'HeroesService',
-      function(HeroesService) {
-        this.name = { first: '', last: ''};
-        this.gender = '';
-        this.email = '';
-        this.cell = '';''
+      class AddHeroFormController {
+        name = { first: '', last: ''};
+        gender = "";
+        email = '';
+        cell = '';
 
-
-        this.addNewHero = () => { 
-          HeroesService.addNewHero({ 
+        constructor(HeroesService) {
+          this.HeroesService = HeroesService;
+        }
+        
+        addNewHero() { 
+          this.HeroesService.addNewHero({ 
             name: this.name, 
             gender: this.gender,
             email: this.email,
@@ -20,14 +23,16 @@ angular
           })
           this.clearInputs();
         }
-
-
-        this.clearInputs = () => {
+    
+    
+        clearInputs() {
           this.name = { first: '', last: ''};
           this.gender = '';
           this.email = '';
           this.cell = '';
         }
-      } 
+      }
     ]
   })
+
+  

@@ -1,7 +1,5 @@
 "use strict";
 
-// import { v4 as uuidv4 } from 'uuid';
-
 angular
   .module("myApp.heroes", [
     "ngRoute",
@@ -9,7 +7,6 @@ angular
     "myApp.heroes.addHeroFormComponent",
     "myApp.heroes.heroDetailsComponent",
   ])
-  // .constant('uuid', uuidv4)
   .config([
     "$routeProvider",
     function ($routeProvider) {

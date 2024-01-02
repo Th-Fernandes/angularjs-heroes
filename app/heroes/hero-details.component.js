@@ -6,8 +6,6 @@ angular
       '$routeParams', 'HeroesService',
       function($routeParams, HeroesService) {
         this.hero = HeroesService.getLoginUuid($routeParams.uuid)
-    
-        console.log(this.hero)
       }
     ]
   })

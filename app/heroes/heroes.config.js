@@ -7,16 +7,6 @@ angular
     "myApp.heroes.addHeroFormComponent",
     "myApp.heroes.heroDetailsComponent",
   ])
-  /* PRIVATE ROUTES CONFIG */
-  .run([
-    '$rootScope', '$location', 'AuthService',
-    function ($rootScope, $location, AuthService) {
-      $rootScope.$on('$routeChangeStart', (event, next) => {
-        if(next.$$route.private && !AuthService.isAuth()) 
-          $location.path('/sign-in')
-      })
-    }
-  ])
   .config([
     "$routeProvider",
     function ($routeProvider) {
@@ -24,11 +14,11 @@ angular
         .when("/heroes", {
           template: 
             '<heroes-list> </heroes-list>'+
-            '<add-hero-form> </add-hero-form>',
-          private: true
+            '<add-hero-form> </add-hero-form>',      
         })
         .when("/heroes/:uuid", {
           template: '<hero-details> </hero-details>',
+          private: true
         })
     },
   ]);

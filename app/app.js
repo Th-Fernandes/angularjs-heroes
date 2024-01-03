@@ -11,6 +11,10 @@ angular
     'myApp.heroesService',
     'myApp.version',
   ])
+  .run([
+    'AuthService',
+    AuthService => AuthService.redirectUnauthorizedUser()
+  ])
   .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 

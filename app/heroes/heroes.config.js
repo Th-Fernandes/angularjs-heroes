@@ -13,7 +13,7 @@ angular
     function ($rootScope, $location, AuthService) {
       $rootScope.$on('$routeChangeStart', (event, next) => {
         if(next.$$route.private && !AuthService.isAuth()) 
-          $location.path('/dashboard')
+          $location.path('/sign-in')
       })
     }
   ])

@@ -7,6 +7,7 @@ angular
     'myApp.dashboard',
     'myApp.heroes',
     'myApp.auth',
+    'myApp.signIn',
     'myApp.heroesService',
     'myApp.version',
   ])

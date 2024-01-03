@@ -1,12 +1,12 @@
 angular
-  .module("myApp.signIn", [])
+  .module("myApp.signIn", ['myApp.signIn.signInFormComponent'])
   .config([
     "$routeProvider",
     class {
       constructor($routeProvider) {
         $routeProvider
           .when("/sign-in", {
-            template: 'hello world'
+            templateUrl: 'sign-in/sign-in.html'
           })
       }
     }

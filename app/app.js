@@ -6,6 +6,7 @@ angular
     'ngRoute',
     'myApp.dashboard',
     'myApp.heroes',
+    'myApp.auth',
     'myApp.heroesService',
     'myApp.version',
   ])

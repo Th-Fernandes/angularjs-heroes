@@ -4,6 +4,7 @@
 angular
   .module('myApp', [
     'ngRoute',
+    'ngMessages',
     'myApp.dashboard',
     'myApp.heroes',
     'myApp.auth',

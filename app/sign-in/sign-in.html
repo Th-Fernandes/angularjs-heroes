@@ -1,16 +1,31 @@
-<form>
+<form name="signInForm">
   <h2>Sign in</h2>
   <small>take a look at our heroes by signing in</small>
 
   <div>
     <label for="">e-mail</label>
-    <input type="email" />
+    <input type="email" required/>
   </div>
 
   <div>
     <label for="">password</label>
-    <input type="password" />
+    <input 
+      type="password" 
+      name="password" 
+      input="password" 
+      ng-model="$ctrl.password" 
+      ng-pattern="/^([^A-Z]*[A-Z][^A-Z]*){2}.*$/"
+      ng-minlength="5"
+    />
+    <div ng-messages="signInForm.password.$error" style="color:maroon" role="alert">
+      <div ng-message="minlength">Your password is too short</div>
+      <div ng-message="pattern">Your password should have at least 2 capital letters</div>
+      <div ng-message-default>This field has an input error</div>
+    </div>
+    {{signInForm.password.$error}}
   </div>
 
   <button type="submit">Sign In</button>
 </form>
+
+

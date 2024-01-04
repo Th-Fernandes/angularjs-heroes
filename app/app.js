@@ -6,6 +6,7 @@ angular
     'ngRoute',
     'ngMessages',
     'myApp.dashboard',
+    'myApp.layout.header',
     'myApp.heroes',
     'myApp.auth',
     'myApp.signIn',

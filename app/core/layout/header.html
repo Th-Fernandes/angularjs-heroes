@@ -1,0 +1,33 @@
+<header>
+  <nav>
+    <ul>
+      <li><a href="#!/dashboard">Dashboard</a></li>
+      <li><a href="#!/heroes">Heroes</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    background-color: #36558F;
+    color: #f0f0f0
+  }
+
+  header > nav > ul {
+    display: flex;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    list-style-type: none;
+  }
+
+  header > nav > ul > li > a {
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color ease-out 0.35s;
+  }
+
+  header > nav > ul > li > a:hover {
+    color:#bebebe
+  }
+</style>

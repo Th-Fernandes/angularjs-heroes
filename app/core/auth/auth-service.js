@@ -14,8 +14,14 @@ angular
         })
       }
 
+      const signIn = ({email, password}) => {
+        console.log(email, password);
+        $location.path('/heroes')
+      }
+
       return{ 
-        redirectUnauthorizedUser
+        redirectUnauthorizedUser,
+        signIn
       }
     }
   ])

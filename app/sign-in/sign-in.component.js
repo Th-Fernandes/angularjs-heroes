@@ -1,10 +1,19 @@
 angular
   .module('myApp.signIn.signInFormComponent', [])
-  .component([
-    function() {
-      this.passwordValidation = '^(?:[^A-Z]*[A-Z]){2}[^A-Z]*$'/* it needs to have 2 capital letters */
-      this.password = '';
+  .component('signInForm', {
+    templateUrl: 'sign-in/sign-in.html',
+    controller: [
+      'AuthService',
+      function(AuthService) {
+        this.passwordValidation = '^(?:[^A-Z]*[A-Z]){2}[^A-Z]*$'/* it needs to have 2 capital letters */
+        this.userCredentials = {
+          email: '',
+          password: ''
+        }
 
-      "/^[a-zA-Z0-9]*$/"
-    }
-  ])
+        this.signIn = () => {
+          AuthService.signIn({...this.userCredentials});
+        }
+      }
+    ]
+  })

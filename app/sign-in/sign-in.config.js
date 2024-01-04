@@ -6,7 +6,7 @@ angular
       constructor($routeProvider) {
         $routeProvider
           .when("/sign-in", {
-            templateUrl: 'sign-in/sign-in.html'
+            template: '<sign-in-form></sign-in-form>'
           })
       }
     }

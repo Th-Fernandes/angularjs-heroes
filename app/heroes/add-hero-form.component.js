@@ -7,7 +7,7 @@ angular
       class AddHeroFormController {
         name = { first: '', last: ''};
         gender = "";
-        email = '';
+        email = '';K
         cell = '';
 
         constructor(HeroesService) {

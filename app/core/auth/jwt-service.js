@@ -8,8 +8,10 @@ angular
       }
 
       function getToken() {
-        if(!$rootScope.userToken)
+        if(!$rootScope.userToken) {
           $rootScope.userToken = $window.localStorage.getItem('JWT');
+        }
+          
         return $rootScope.userToken;
       }
 

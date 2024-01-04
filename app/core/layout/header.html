@@ -1,8 +1,12 @@
 <header>
   <nav>
     <ul>
-      <li><a href="#!/dashboard">Dashboard</a></li>
-      <li><a href="#!/heroes">Heroes</a></li>
+      <div>
+        <li><a ng-href="#!/dashboard">Dashboard</a></li>
+        <li><a ng-href="#!/heroes">Heroes</a></li>
+      </div>
+      <li ng-if="$ctrl.isUserSignedIn"><a href="">Sign Out</a></li>
+      <li ng-if="!$ctrl.isUserSignedIn"><a href="">Sign In</a></li>
     </ul>
   </nav>
 </header>
@@ -15,19 +19,27 @@
 
   header > nav > ul {
     display: flex;
+    justify-content: space-between;
     padding: 1rem 2rem;
     gap: 1rem;
     list-style-type: none;
   }
 
+  header > nav > ul > div {
+    display: flex;
+    gap: 1rem;
+  }
+
+  header > nav > ul > div >  li > a,
   header > nav > ul > li > a {
     font-weight: bold;
     color: #ffffff;
     text-decoration: none;
     transition: color ease-out 0.35s;
   }
-
+  header > nav > ul > div >  li > a:hover,
   header > nav > ul > li > a:hover {
     color:#bebebe
   }
+
 </style>

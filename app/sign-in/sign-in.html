@@ -1,4 +1,4 @@
-<form name="signInForm" ng-submit="$ctrl.signIn()">
+<form name="signInForm"  ng-submit="$ctrl.signIn()">
   <h2>Sign in</h2>
   <small>take a look at our heroes by signing in</small>
 
@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <button type="submit">Sign In</button>
+  <button type="submit" name="submitSignInButton" ng-disabled="signInForm.$invalid || $ctrl.isSignInLoading">Sign In</button>
 </form>
 
 

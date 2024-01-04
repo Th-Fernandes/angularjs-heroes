@@ -22,7 +22,7 @@ angular
               return 
             }
             reject('invalid credentials. Please try again')
-          }, 4000)
+          }, 400)
         })
       }
 

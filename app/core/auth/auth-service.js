@@ -18,7 +18,7 @@ angular
           setTimeout(() => {
             if(email && password) {
               JwtService.storeOnClient();
-              resolve('request worked just fine')
+              resolve(true);
               return 
             }
             reject('invalid credentials. Please try again')

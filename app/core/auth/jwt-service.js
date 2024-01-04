@@ -1,14 +1,16 @@
 angular
   .module('myApp.auth.jwt', [])
   .factory('JwtService', [
-    '$window', 
-    function($window) {
+    '$rootScope','$window', 
+    function($rootScope , $window) {
       function storeOnClient() {
         $window.localStorage.setItem('JWT', 'test');
       }
 
       function getToken() {
-        return $window.localStorage.getItem('JWT');
+        if(!$rootScope.userToken)
+          $rootScope.userToken = $window.localStorage.getItem('JWT');
+        return $rootScope.userToken;
       }
 
       return {

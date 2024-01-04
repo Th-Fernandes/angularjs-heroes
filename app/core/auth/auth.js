@@ -2,5 +2,5 @@
 
 angular.module('myApp.auth', [
   'myApp.auth.auth',
-  'myApp.auth.jwt'
+  'myApp.auth.jwt',
 ])

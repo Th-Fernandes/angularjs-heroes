@@ -3,7 +3,7 @@ angular
   .factory('AuthService', [
     '$rootScope', '$location', '$q', 'JwtService',
     function($rootScope, $location, $q , JwtService) {
-      function redirectUnauthorizedUser() {
+      function redirectUnauthorizedUser() { 
         const isUserSignedIn = () => JwtService.getToken() !== null;
 
         $rootScope.$on('$routeChangeStart', (event, next ) => {

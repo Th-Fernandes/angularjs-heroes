@@ -1,27 +1,35 @@
 angular
   .module('myApp.auth.auth', [])
   .factory('AuthService', [
-    '$rootScope', '$location', '$q',
-    function($rootScope, $location, $q) {
-      const isAuth = () => {
-        return false
-      }
-
-      const redirectUnauthorizedUser = () => {
+    '$rootScope', '$location', '$q', '$window',
+    function($rootScope, $location, $q, $window) {
+      function redirectUnauthorizedUser() {
         $rootScope.$on('$routeChangeStart', (event, next ) => {
-          if(next.$$route.private && !isAuth()) 
+          if(next.$$route?.private && !isUserSignedIn()) 
             $location.path('/sign-in')
         })
       }
 
-      const signIn = ({email, password}) => {
+      function isUserSignedIn() {
+        return $window.localStorage.getItem('JWT');
+      }
+
+      function signIn({email, password}) {
         // $q is a built-in angularjs library to work with async requests
         return $q((resolve, reject) => {
           setTimeout(() => {
-            if(email && password) return resolve('request worked just fine')
+            if(email && password) {
+              storageJWTOnClient()
+              resolve('request worked just fine')
+              return 
+            }
             reject('invalid credentials. Please try again')
           }, 4000)
         })
+      }
+
+      function storageJWTOnClient() {
+        $window.localStorage.setItem('JWT', 'test');
       }
 
       return{ 

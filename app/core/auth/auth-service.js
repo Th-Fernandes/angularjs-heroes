@@ -28,9 +28,15 @@ angular
         })
       }
 
+      function signOut() {
+        JwtService.removeToken();
+        $location.path('/sign-in');
+      }
+
       return{ 
         redirectUnauthorizedUser,
-        signIn
+        signIn,
+        signOut
       }
     }
   ])

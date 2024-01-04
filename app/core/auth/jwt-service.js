@@ -15,9 +15,15 @@ angular
         return $rootScope.userToken;
       }
 
+      function removeToken() {
+        $window.localStorage.removeItem('JWT');
+        $rootScope.userToken = null;
+      }
+
       return {
         storeOnClient,
-        getToken
+        getToken,
+        removeToken
       }
     }
   ])

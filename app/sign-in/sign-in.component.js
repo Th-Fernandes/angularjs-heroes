@@ -12,7 +12,11 @@ angular
         }
 
         this.signIn = () => {
-          AuthService.signIn({...this.userCredentials});
+          AuthService.signIn({...this.userCredentials})
+            .then(() => {
+              
+            })
+            .catch(err => console.error('error: ', err));
         }
       }
     ]

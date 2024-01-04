@@ -1,8 +1,8 @@
 angular
   .module('myApp.auth.auth', [])
   .factory('AuthService', [
-    '$rootScope', '$location',
-    function($rootScope, $location) {
+    '$rootScope', '$location', '$q',
+    function($rootScope, $location, $q) {
       const isAuth = () => {
         return false
       }
@@ -15,8 +15,13 @@ angular
       }
 
       const signIn = ({email, password}) => {
-        console.log(email, password);
-        $location.path('/heroes')
+        // $q is a built-in angularjs library to work with async requests
+        return $q((resolve, reject) => {
+          setTimeout(() => {
+            if(email && password) return resolve('request worked just fine')
+            reject('invalid credentials. Please try again')
+          }, 4000)
+        })
       }
 
       return{ 

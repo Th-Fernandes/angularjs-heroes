@@ -23,7 +23,7 @@ angular
       }
 
       findUserByUuid(uuid) {
-        return this.heroes.find(hero => hero.login.uuid === uuid)
+        return this.heroes.find(hero => hero.id === uuid)
       }
     }
   ])

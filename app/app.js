@@ -1,15 +1,19 @@
 'use strict';
 
+const builtInLibraries = [
+  'ngRoute',
+  'ngMessages',
+]
 // Declare app level module which depends on views, and core components
 angular
   .module('myApp', [
-    'ngRoute',
-    'ngMessages',
+    ...builtInLibraries,
     'myApp.dashboard',
-    'myApp.layout.header',
     'myApp.heroes',
     'myApp.auth',
     'myApp.signIn',
+    'myApp.signUp',
+    'myApp.layout.header',
     'myApp.heroesService',
     'myApp.version',
   ])

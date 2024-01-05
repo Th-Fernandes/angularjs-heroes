@@ -4,13 +4,12 @@ angular
     '$rootScope', '$location', '$q', 'JwtService',
     function($rootScope, $location, $q , JwtService) {
       function redirectUnauthorizedUser() { 
-        const checkIfUserIsSignedIn = () => JwtService.getToken() !== null;
-        
-        $rootScope.$on('$routeChangeStart', (event, next ) => {
-          const isUserSignedIn = checkIfUserIsSignedIn()
-          
-          if(next.$$route?.private && !isUserSignedIn) 
-            $location.path('/sign-in')
+        $rootScope.$on('$routeChangeStart', (event, next) => {
+          JwtService.onRouteChanging();
+          const { isTokenUnavailable } = JwtService.getToken();
+
+          if(next.$$route?.private && isTokenUnavailable) 
+            $location.path('/sign-in');
         })
       }
 

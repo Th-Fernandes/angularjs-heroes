@@ -2,7 +2,7 @@
   <h2>List of heroes</h2>
   <ul ng-if="$ctrl.heroes">
     <li ng-repeat="hero in $ctrl.heroes">
-      <a ng-href="#!/heroes/{{hero.login.uuid}}">
+      <a ng-href="#!/heroes/{{hero.id}}">
         {{hero.name.first + ' ' + hero.name.last}}
       </a>
     </li>

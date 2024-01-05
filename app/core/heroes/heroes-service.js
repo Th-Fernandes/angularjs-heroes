@@ -7,15 +7,13 @@ angular
       lastHero = {}
   
       constructor($resource) {
-        const HEROES_ENDPOINT = 'https://randomuser.me/api/?results=5';
-
-        $resource(HEROES_ENDPOINT)
-          .get(heroes => this.#storeHeroesOnState(heroes));
+        $resource('http://localhost:3000/heroes')
+          .query(heroes => this.#storeHeroesOnState(heroes));
       }
 
       #storeHeroesOnState(heroes) {
-        this.heroes.push(...heroes.results);
-        const lastHero = heroes.results.at(-1);
+        this.heroes.push(...heroes);
+        const lastHero = heroes.at(-1);
         Object.assign(this.lastHero, lastHero);
       }
 
@@ -25,7 +23,7 @@ angular
       }
 
       findUserByUuid(uuid) {
-        return this.heroes.find(hero => hero.login.uuid === uuid)
+        return this.heroes.find(hero => hero.id === uuid)
       }
     }
   ])

@@ -1,7 +1,7 @@
 <section ng-if="$ctrl.hero">
-  <p ng-if="!$ctrl.hero.picture">loading...</p>
+  <p ng-if="!$ctrl.hero.photo">loading...</p>
   <img
-    ng-src="{{$ctrl.hero.picture.large}}"
+    ng-src="{{$ctrl.hero.photo}}"
     ng-alt="{{$ctrl.hero.name.first}} {{$ctrl.hero.name.last}} picture"
   />
 
@@ -13,8 +13,8 @@
         <h3>Contacts</h3>
 
         <ul>
-          <li>{{$ctrl.hero.cell}}</li>
-          <li>{{$ctrl.hero.email}}</li>
+          <li>phone number: {{$ctrl.hero.phoneNumber}}</li>
+          <li>e-mail: {{$ctrl.hero.email}}</li>
         </ul>
       </div>
     </li>
@@ -25,22 +25,26 @@
 
         <ul>
           <li>gender: {{$ctrl.hero.gender}}</li>
-          <li>
-            location: {{$ctrl.hero.location.city}},
-            {{$ctrl.hero.location.state}} - {{$ctrl.hero.location.country}}
-          </li>
         </ul>
       </div>
     </li>
   </ul>
 </section>
-
 <section ng-if="!$ctrl.hero">
   <h2>Hero not found</h2>
-  <p>ops! it looks like the hero you are look for does not exists or it is unavailable</p>
+  <p>
+    ops! it looks like the hero you are looking for does not exists or it is
+    unavailable
+  </p>
   <button>
-    <a href="#!/heroes">
-      go back to heroes page
-    </a>
+    <a href="#!/heroes"> go back to heroes page </a>
   </button>
+</section>
+
+<section>
+  <hero-opportunity
+    ng-if="$ctrl.hero.opportunities.length > 0"
+    opportunities="$ctrl.hero.opportunities"
+  >
+  </hero-opportunity>
 </section>

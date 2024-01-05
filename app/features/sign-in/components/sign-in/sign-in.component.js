@@ -1,7 +1,7 @@
 angular
   .module('myApp.signIn.signInFormComponent', [])
   .component('signInForm', {
-    templateUrl: 'features/sign-in/components/sign-in.html',
+    templateUrl: 'features/sign-in/components/sign-in/sign-in.html',
     controller: [
       '$location', 'AuthService' ,
       function($location, AuthService) {

@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,48 +19,36 @@
 </head>
 <body>
   <layout-header></layout-header> 
-
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
-
   <div ng-view></div>
-
   <div>AngularJS seed app: v<span app-version></span></div>
-
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
+  <!--ANGULAR CORE-->
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular-route/angular-route.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.8.3/angular-messages.js"></script>
   <script src="lib/angular-resource/angular-resource.js"></script>
   <script src="app.js" type="module"></script>
-  <script src="https://unpkg.com/uuid@8.1.0/dist/umd/uuidv4.min.js" type="module">
-  </script>
-
-
-
+  <!--THIRD PARTY LIBS-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.8.3/angular-messages.js"></script>
+  <script src="https://unpkg.com/uuid@8.1.0/dist/umd/uuidv4.min.js"></script>
+  <!--ROUTE FEATURES-->
   <script src="dashboard/dashboard.config.js"></script>
   <script src="heroes/heroes.config.js"></script>
   <script src="sign-in/sign-in.config.js"></script> 
-
+  <!--SERVICES AND ITS MODULES-->
   <script src="core/heroes/heroes.js"></script>
   <script src="core/heroes/heroes-service.js" type="module"></script>
   <script src="core/auth/auth.js"></script>
   <script src="core/auth/auth-service.js"></script>
   <script src="core/auth/jwt-service.js"></script>
-  
+  <!-- DIRECTIVES, FILTERS AND ITS MODULES-->
   <script src="core/version/version.js"></script>
   <script src="core/version/version-directive.js"></script>
   <script src="core/version/interpolate-filter.js" type="module"></script>
-
+  <!--COMPONENTS-->
   <script src="core/layout/header.component.js"></script>
   <script src="heroes/heroes-list.component.js"></script>
   <script src="heroes/add-hero-form.component.js"></script>
   <script src="heroes/hero-details.component.js"></script>
   <script src="dashboard/dashboard.component.js"></script>
   <script src="sign-in/sign-in.component.js"></script>
-  
 </body>
 </html>

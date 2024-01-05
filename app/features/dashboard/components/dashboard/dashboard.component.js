@@ -1,7 +1,7 @@
 angular
   .module('myApp.dashboard.lastCreatedHeroComponent', [])
   .component('lastCreatedHero', {
-    templateUrl: 'dashboard/dashboard.html',
+    templateUrl: 'features/dashboard/components/dashboard/dashboard.html',
     controller: [
       'HeroesService',
       class {

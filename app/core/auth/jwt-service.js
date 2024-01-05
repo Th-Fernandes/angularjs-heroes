@@ -10,9 +10,9 @@ angular.module("myApp.auth.jwt", []).factory("JwtService", [
     }
 
     function createUserToken() {
-      const DAY_IN_MILlISECONDS = 5000 ; /*86400000 */
+      const DAY_IN_MILlISECONDS = 86400000; 
       return {
-        value: 'test',
+        value: uuidv4(),
         expiry: getDaysInMilliseconds() + DAY_IN_MILlISECONDS,
       };
     }

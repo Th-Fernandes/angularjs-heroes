@@ -10,10 +10,7 @@ angular
     function ($routeProvider) {
       $routeProvider
         .when("/dashboard", {
-          template: '<last-created-hero> </last-created-hero>'
+          template: '<last-created-hero></last-created-hero>'
         })
-        .when("/dashboard/congrats", {
-          template: '<p> congrats! you have find out our secret path'
-        });
     },
   ]);

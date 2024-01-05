@@ -1,13 +1,13 @@
 angular
   .module('myApp.heroes.addHeroFormComponent', [])
   .component('addHeroForm', {
-    templateUrl: 'heroes/add-hero-form.html',
+    templateUrl: 'features/heroes/components/add-hero-form/add-hero-form.html',
     controller: [
       'HeroesService',
       class AddHeroFormController {
         name = { first: '', last: ''};
         gender = "";
-        email = '';K
+        email = '';
         cell = '';
 
         constructor(HeroesService) {

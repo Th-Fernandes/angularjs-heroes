@@ -1,7 +1,7 @@
 angular
   .module('myApp.heroes.listComponent', [])
   .component('heroesList', {
-    templateUrl: 'heroes/heroes-list.html',
+    templateUrl: 'features/heroes/components/heroes-list/heroes-list.html',
     controller: [
       'HeroesService',
       function (HeroesService) {

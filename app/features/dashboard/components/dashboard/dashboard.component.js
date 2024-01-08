@@ -3,10 +3,14 @@ angular
   .component('lastCreatedHero', {
     templateUrl: 'features/dashboard/components/dashboard/dashboard.html',
     controller: [
-      'HeroesService',
+      'HeroesService', '$window',
       class {
-        constructor(HeroesService) {
-          this.lastCreatedHero = HeroesService.lastHero;  
+        constructor(HeroesService, $window) {
+          this.refreshPage = () => $window.location.reload();
+          
+          HeroesService.heroes.$promise
+            .then(heroes => this.lastCreatedHero = heroes.at(-1))
+            .catch(() => this.hasHeroFetchFailed = true);
         }
       }
     ]

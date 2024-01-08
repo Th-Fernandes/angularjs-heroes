@@ -1,6 +1,13 @@
 <section>
-  <h2> 
-    {{$ctrl.lastCreatedHero.name.first}} 
-    {{$ctrl.lastCreatedHero.name.last}} 
-    was the last created hero</h2>
+  <h2 ng-if="$ctrl.lastCreatedHero">
+    {{$ctrl.lastCreatedHero.name.first}} {{$ctrl.lastCreatedHero.name.last}} was
+    the last created hero
+  </h2>
+
+  <div ng-if="$ctrl.hasHeroFetchFailed">
+    <h2>Ops! it seems that something went wrong</h2>
+    <p>It was not possible to render your content properly</p>
+
+    <button ng-click="$ctrl.refreshPage()">Try again</button>
+  </div>
 </section>

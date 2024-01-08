@@ -5,12 +5,10 @@ angular
     class HeroesService {
       constructor($resource, API_ENDPOINTS) {
         this.heroes = $resource(API_ENDPOINTS.HEROES).query();
-        this.lastHero = {};
       }
 
       addNewHero(hero) {
         this.heroes.push({...hero, login: { uuid: uuidv4() }});
-        Object.assign(this.lastHero, hero);
       }
 
       findByUuid(uuid) {

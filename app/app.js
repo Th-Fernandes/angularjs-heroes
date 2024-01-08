@@ -21,6 +21,9 @@ angular
     'AuthService',
     AuthService => AuthService.redirectUnauthorizedUser()
   ])
+  .constant('API_ENDPOINTS', {
+    HEROES: 'http://localhost:3000/heroes'
+  })
   .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 

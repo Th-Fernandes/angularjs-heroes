@@ -1,20 +1,11 @@
 angular
   .module('myApp.heroesService.service', [])
   .factory('HeroesService', [
-    '$resource',
+    '$resource', 'API_ENDPOINTS',
     class HeroesService {
-      heroes = [];
-      lastHero = {}
-  
-      constructor($resource) {
-        $resource('http://localhost:3000/heroes')
-          .query(heroes => this.#storeHeroesOnState(heroes));
-      }
-
-      #storeHeroesOnState(heroes) {
-        this.heroes.push(...heroes);
-        const lastHero = heroes.at(-1);
-        Object.assign(this.lastHero, lastHero);
+      constructor($resource, API_ENDPOINTS) {
+        this.heroes = $resource(API_ENDPOINTS.HEROES).query();
+        this.lastHero = {};
       }
 
       addNewHero(hero) {
@@ -22,8 +13,10 @@ angular
         Object.assign(this.lastHero, hero);
       }
 
-      findUserByUuid(uuid) {
-        return this.heroes.find(hero => hero.id === uuid)
+      findByUuid(uuid) {
+        return this.heroes.$promise.then(heroes => {
+          return heroes.find(hero => hero.id === uuid)
+        })
       }
     }
   ])

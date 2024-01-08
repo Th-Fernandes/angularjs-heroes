@@ -5,7 +5,11 @@ angular
     controller: [
       '$routeParams', 'HeroesService', 
       function($routeParams, HeroesService) {
-        this.hero = HeroesService.findUserByUuid($routeParams.uuid);
+        this.hero = {}
+
+        HeroesService.findByUuid($routeParams.uuid)
+          .then(user => this.hero = user)
+          .catch(() => this.hero = false)
       }
     ]
   })

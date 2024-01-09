@@ -1,4 +1,4 @@
-angular.module("myApp.auth.jwt", []).factory("JwtService", [
+angular.module("myApp.auth.jwtService", []).factory("JwtService", [
   "$rootScope",
   "$window",
   function ($rootScope, $window) {

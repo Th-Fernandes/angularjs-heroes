@@ -1,5 +1,5 @@
 angular
-  .module('myApp.auth.auth', [])
+  .module('myApp.auth.authService', [])
   .factory('AuthService', [
     '$rootScope', '$location', '$q', 'JwtService',
     function($rootScope, $location, $q , JwtService) {

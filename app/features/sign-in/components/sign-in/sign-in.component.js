@@ -5,10 +5,12 @@ angular
     controller: [
       '$location', 'AuthService' ,
       function($location, AuthService) {
-        this.passwordValidation = '^(?:[^A-Z]*[A-Z]){2}[^A-Z]*$'/* it needs to have 2 capital letters */
+        this.inputValidations = {
+          email: /^(([^<>()\[\]\.,;:\s@\”]+(\.[^<>()\[\]\.,;:\s@\”]+)*)|(\”.+\”))@(([^<>()[\]\.,;:\s@\”]+\.)+[^<>()[\]\.,;:\s@\”]{2,})$/i,
+          password: /^([^A-Z]*[A-Z][^A-Z]*){2}.*$/
+        }
         this.userCredentials = { email: '', password: '' };
         this.isSignInLoading = false;
-
         this.signIn = () => {
           this.isSignInLoading = true;
 

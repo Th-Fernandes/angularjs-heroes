@@ -1,32 +1,58 @@
-<form name="signInForm"  ng-submit="$ctrl.signIn()">
+<form name="signInForm" ng-submit="$ctrl.signIn()">
   <h2>Sign in</h2>
   <small>take a look at our heroes by signing in</small>
 
   <div>
     <label for="">e-mail</label>
-    <input type="email" ng-model="$ctrl.userCredentials.email" required/>
+    <input 
+      type="email" 
+      name="email" 
+      ng-model="$ctrl.userCredentials.email"
+      ng-model-options="{ debounce: 400 }"
+      ng-pattern = "$ctrl.inputValidations.email"
+      ng-minlength="5" 
+      ng-required="true" 
+    />
+
+    <div ng-messages="signInForm.email.$error" style="color: red" role="alert">
+      <span ng-message="pattern">please enter a valid email</span>
+    </div>
   </div>
 
   <div>
     <label for="">password</label>
-    <input 
-      type="password" 
-      name="password" 
-      input="password" 
-      ng-model="$ctrl.userCredentials.password" 
+    <input
+      type="password"
+      name="password"
+      input="password"
+      ng-model="$ctrl.userCredentials.password"
+      ng-model-options="{ debounce: 400 }"
       ng-pattern="/^([^A-Z]*[A-Z][^A-Z]*){2}.*$/"
       ng-minlength="5"
-      required
+      ng-required="true"
     />
-    <div ng-messages="signInForm.password.$error" style="color:red" role="alert">
+    <div
+      ng-messages="signInForm.password.$error"
+      style="color: red"
+      role="alert"
+    >
       <div ng-message="minlength">Your password is too short</div>
-      <div ng-message="pattern">Your password should have at least 2 capital letters</div>
+      <div ng-message="pattern">
+        Your password should have at least 2 capital letters
+      </div>
     </div>
   </div>
 
-  <button type="submit" name="submitSignInButton" ng-disabled="signInForm.$invalid || $ctrl.isSignInLoading">Sign In</button>
+  <button
+    type="submit"
+    name="submitSignInButton"
+    ng-disabled="signInForm.$invalid || $ctrl.isSignInLoading"
+  >
+    Sign In
+  </button>
 </form>
 
-<small>You are not a hero yet? <a href="#!/sign-up">turn into one right now!</a></small>
-
-
+<small
+  >You are not a hero yet?
+  <a href="#!/sign-up">turn into one right now!</a></small
+>

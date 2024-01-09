@@ -1,44 +1,50 @@
-<section ng-if="$ctrl.hero">
-  <p ng-if="!$ctrl.hero.photo">loading...</p>
-  <img
-    ng-src="{{$ctrl.hero.photo}}"
-    ng-alt="{{$ctrl.hero.name.first}} {{$ctrl.hero.name.last}} picture"
-  />
+<section>
+  <!--When hero fetch is loading-->
+  <div ng-if="$ctrl.hero.isFetchLoading">
+    <h2>Loading...</h2>
+  </div>
+  <!-- When hero fetch fails-->
+  <div ng-if="$ctrl.hero.hasFetchFailed">
+    <h2>Hero not found</h2>
+    <p>
+      ops! it looks like the hero you are looking for does not exists or it is
+      unavailable
+    </p>
+    <button>
+      <a href="#!/heroes"> go back to heroes page </a>
+    </button>
+  </div>
+  <!-- When hero fetch resolves-->
+  <div ng-if="$ctrl.hero.data">
+    <img
+      ng-src="{{$ctrl.hero.data.photo}}"
+      ng-alt="{{$ctrl.hero.data.name.first}} {{$ctrl.hero.data.name.last}} picture"
+    />
+    <h2>{{$ctrl.hero.data.name.first}} {{$ctrl.hero.data.name.last}} details</h2>
 
-  <h2>{{$ctrl.hero.name.first}} {{$ctrl.hero.name.last}} details</h2>
-
-  <ul>
-    <li>
-      <div>
-        <h3>Contacts</h3>
-
-        <ul>
-          <li>phone number: {{$ctrl.hero.phoneNumber}}</li>
-          <li>e-mail: {{$ctrl.hero.email}}</li>
-        </ul>
-      </div>
-    </li>
-
-    <li>
-      <div>
-        <h3>General info</h3>
-
-        <ul>
-          <li>gender: {{$ctrl.hero.gender}}</li>
-        </ul>
-      </div>
-    </li>
-  </ul>
-</section>
-<section ng-if="!$ctrl.hero">
-  <h2>Hero not found</h2>
-  <p>
-    ops! it looks like the hero you are looking for does not exists or it is
-    unavailable
-  </p>
-  <button>
-    <a href="#!/heroes"> go back to heroes page </a>
-  </button>
+    <ul>
+      <li>
+        <div>
+          <h3>Contacts</h3>
+  
+          <ul>
+            <li>phone number: {{$ctrl.hero.data.phoneNumber}}</li>
+            <li>e-mail: {{$ctrl.hero.data.email}}</li>
+          </ul>
+        </div>
+      </li>
+  
+      <li>
+        <div>
+          <h3>General info</h3>
+  
+          <ul>
+            <li>gender: {{$ctrl.hero.data.gender}}</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
 </section>
 
 <section>

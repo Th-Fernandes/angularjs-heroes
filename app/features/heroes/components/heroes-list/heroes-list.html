@@ -1,16 +1,23 @@
 <div>
   <h2>List of heroes</h2>
-  <ul ng-if="$ctrl.heroes">
-    <li ng-repeat="hero in $ctrl.heroes">
+  <p ng-if="$ctrl.heroes.hasFetchFailed">
+    Ops! something went wrong. It looks like we can not show to you our list of heroes.
+    Please try again soon.
+  </p>
+
+
+  <ul ng-if="$ctrl.heroes.data.length > 0">
+    <li ng-repeat="hero in $ctrl.heroes.data">
       <a ng-href="#!/heroes/{{hero.id}}">
         {{hero.name.first + ' ' + hero.name.last}}
       </a>
     </li>
   </ul>
 
-  <h3 ng-if="$ctrl.heroes.length === 0">loading...</h3>
+  <h3 ng-if="$ctrl.heroes.isFetchLoading">loading...</h3>
   <p>
     <p ng-bind="$ctrl.heroes[0].results"></p>
     Showing of 'interpolate' filter: {{ 'Current version is v%VERSION%.' | interpolate }}
   </p>
 </div>
+

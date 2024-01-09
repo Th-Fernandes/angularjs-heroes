@@ -5,11 +5,13 @@ angular
     controller: [
       '$routeParams', 'HeroesService', 
       function($routeParams, HeroesService) {
-        this.hero = {}
+        this.hero = HeroesService.heroesPromiseFactory();
+        this.setHero = (newValue) => Object.assign(this.hero, newValue)
 
         HeroesService.findByUuid($routeParams.uuid)
-          .then(user => this.hero = user)
-          .catch(() => this.hero = false)
+          .catch(() => this.setHero({hasFetchFailed: true}))
+          .then(user => this.setHero({ data: user }))
+          .finally(() => this.setHero({ isFetchLoading: false }))
       }
     ]
   })

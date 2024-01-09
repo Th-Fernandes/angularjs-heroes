@@ -7,6 +7,15 @@ angular
         this.heroes = $resource(API_ENDPOINTS.HEROES).query();
       }
 
+      /* object handle FETCH heroes standardized */
+      heroesPromiseFactory() {
+        return  {
+          data: undefined , 
+          hasFetchFailed: false, 
+          isFetchLoading: true
+        }
+      }
+
       addNewHero(hero) {
         this.heroes.push({...hero, login: { uuid: uuidv4() }});
       }

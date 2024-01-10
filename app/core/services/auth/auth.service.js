@@ -14,8 +14,7 @@ angular
       }
 
       function signIn({ email, password }) {
-        const queryUrl = `http://localhost:3000/heroes?email=${email}&password=${password}`
-        
+        const queryUrl = `http://localhost:3000/heroes?email=${email}&password=${password}`  
 
         return $resource(queryUrl).query().$promise
           .catch(() => $q.reject('API OFF'))
@@ -27,19 +26,13 @@ angular
             JwtService.storeOnClient()
             return true
           })
-          
+      }
 
-        // $q is a built-in angularjs library to work with async requests
-        // return $q((resolve, reject) => {
-        //   setTimeout(() => {
-        //     if(email && password) {
-        //       JwtService.storeOnClient();
-        //       resolve(true);
-        //       return 
-        //     }
-        //     reject('invalid credentials. Please try again')
-        //   }, 400)
-        // })
+      function signInPromiseFactory() {
+        return {
+          isLoading: false,
+          errorMessage: null
+        }
       }
 
       function signOut() {
@@ -50,6 +43,7 @@ angular
       return{ 
         redirectUnauthorizedUser,
         signIn,
+        signInPromiseFactory,
         signOut
       }
     }

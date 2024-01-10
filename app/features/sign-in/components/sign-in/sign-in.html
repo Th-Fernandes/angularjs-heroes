@@ -1,15 +1,18 @@
-<form name="signInForm" ng-submit="$ctrl.signIn()">
+<form name="signInForm" ng-submit="$ctrl.onSubmitSignInCredentials()">
   <h2>Sign in</h2>
   <small>take a look at our heroes by signing in</small>
+  <small ng-if="$ctrl.signInPromise.errorMessage" role="alert" style="color: red; display: block;">
+    ERROR: {{$ctrl.signInPromise.errorMessage}}
+  </small>
 
   <div>
     <label for="">e-mail</label>
     <input 
       type="email" 
       name="email" 
-      ng-model="$ctrl.userCredentials.email"
+      ng-model="$ctrl.inputs.email.value"
       ng-model-options="{ debounce: 400 }"
-      ng-pattern = "$ctrl.inputValidations.email"
+      ng-pattern = "$ctrl.inputs.email.pattern"
       ng-minlength="5" 
       ng-required="true" 
     />
@@ -25,7 +28,7 @@
       type="password"
       name="password"
       input="password"
-      ng-model="$ctrl.userCredentials.password"
+      ng-model="$ctrl.inputs.password.value"
       ng-model-options="{ debounce: 400 }"
       ng-pattern="/^([^A-Z]*[A-Z][^A-Z]*){2}.*$/"
       ng-minlength="5"
@@ -46,9 +49,9 @@
   <button
     type="submit"
     name="submitSignInButton"
-    ng-disabled="signInForm.$invalid || $ctrl.isSignInLoading"
+    ng-disabled="signInForm.$invalid || $ctrl.signInPromise.isLoading"
   >
-    Sign In
+    {{$ctrl.signInPromise.isLoading ? 'Loading...' : 'Sign In'}}
   </button>
 </form>
 

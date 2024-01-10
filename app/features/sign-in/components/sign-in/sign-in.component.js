@@ -12,15 +12,13 @@ angular.module("myApp.signIn.signInFormComponent", []).component("signInForm", {
         this.isSignInLoading = true;
 
         AuthService.signIn(this.inputs.values)
-          .catch(() => cleanUpInputs())
-          .then((isSignInSucceed) => {
-            if (isSignInSucceed) $location.path("/heroes");
-          })
-          .finally(() => (this.isSignInLoading = false));
+          .catch(cleanUpInputs)
+          .then((hasSignInSucceded) => hasSignInSucceded && $location.path("/heroes"))
+          .finally(() => this.isSignInLoading = false)
       };
 
       const cleanUpInputs = () => {
-        const cleanedUpCredentials = new InputGroup();
+        const cleanedUpCredentials = new InputGroupFactory();
         Object.assign(this.inputs , cleanedUpCredentials);
       };
     },

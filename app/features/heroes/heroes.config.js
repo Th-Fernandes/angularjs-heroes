@@ -6,7 +6,7 @@ angular
     "myApp.heroes.listComponent", 
     "myApp.heroes.addHeroFormComponent",
     "myApp.heroes.heroDetailsComponent",
-    "myApp.heroes.heroOpportunityComponent",
+    "myApp.heroes.heroOpportunitiesComponent",
   ])
   .config([
     "$routeProvider",

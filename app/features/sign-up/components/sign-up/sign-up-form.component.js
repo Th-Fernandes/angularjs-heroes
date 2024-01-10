@@ -15,7 +15,10 @@ angular
 
 
   class SignUpInputGroupFactory {
-    name = {first: '', name: ''}
+    name = {
+      first: { value: ''}, 
+      last: { value: ''}
+    }
     email = {
       value: '',
       pattern: ''

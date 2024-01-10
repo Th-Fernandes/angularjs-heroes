@@ -48,9 +48,6 @@
 </section>
 
 <section>
-  <hero-opportunity
-    ng-if="$ctrl.hero.opportunities.length > 0"
-    opportunities="$ctrl.hero.opportunities"
-  >
-  </hero-opportunity>
+  <hero-opportunities opportunities="$ctrl.hero.data.opportunities">
+  </hero-opportunities>
 </section>

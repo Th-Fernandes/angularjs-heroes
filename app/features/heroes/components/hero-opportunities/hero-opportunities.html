@@ -1,7 +1,8 @@
 <h2>Opportunities</h2>
-  <p>Take a look at the Opportunities to work with great heroes!</p>
+  <p ng-if="$ctrl.opportunities.length > 0">Take a look at the Opportunities to work with great heroes!</p>
 
-  <ul>
+  <p ng-if="$ctrl.opportunities.length <= 0">It seems that this hero does not have any opportunities</p>
+  <ul ng-if="$ctrl.opportunities.length > 0">
     <li ng-repeat="opportunity in $ctrl.opportunities">
       <div>
         <h3>{{opportunity.title}}</h3>

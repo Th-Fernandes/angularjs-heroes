@@ -1,20 +1,44 @@
-<form>
+<form ng-submit="$ctrl.onSubmitSignUp()">
   <h2>Sign-up for free</h2>
   <p>become one of our greatest heroes</p>
 
   <div>
     <label for="">first name</label>
-    <input type="text">
+    <input type="text" ng-model="$ctrl.inputs.name.first">
 
     <label for="">last name</label>
-    <input type="text">
+    <input type="text" ng-model="$ctrl.inputs.name.last">
   </div>
 
   <div>
-    <label for=""></label>
-    
+    <label for="">E-mail</label>
+    <input type="email" ng-model="$ctrl.inputs.email.value">
+  </div>
+  <div>
+    <label for="">Photo Url</label>
+    <input 
+      type="text" 
+      placeholder="ex: https://randomuser.me/api/portraits/women/13.jpg"
+      ng-model="$ctrl.inputs.photo.value"
+    />
   </div>
 
+  <div>
+    <select name="" id="" ng-model="$ctrl.inputs.gender.value">
+      <option value="female">female</option>
+      <option value="male">male</option>
+    </select>
+  </div>
 
+  <div>
+    <label for="">Codename</label>
+    <input type="text" placeholder="ex: Miss Thunder" ng-model="$ctrl.inputs.codename.value">
+  </div>
+  <div>
+    <label for="">Phone Number</label>
+    <input type="tel" ng-model="$ctrl.inputs.phoneNumber.value">
+  </div>
+
+  <button type="submit">Sign Up</button>
 </form>
 <small>You are a hero already? <a href="#!/sign-in">Sign in right now!</a></small>

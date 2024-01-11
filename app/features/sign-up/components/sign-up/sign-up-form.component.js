@@ -11,8 +11,8 @@ angular
         this.onSubmitSignUp = () => {
           this.signUpPromise.isLoading = true;
 
-          AuthService.signUp()
-            .catch(e => this.signUpPromise.errorMessage = e)
+          AuthService.signUp(this.inputs.values)
+            .catch(e => { this.signUpPromise.errorMessage = e })
             .then(hasSucceded => hasSucceded && $location.path('/heroes'))
             .finally(() => this.signUpPromise.isLoading = false)
         }
@@ -35,13 +35,29 @@ angular
       pattern: /(https):\/\/[^ "]/
     }
     gender = {
-      value: ''
+      value: '',
+      pattern: ''
     }
     codename = {
-      value: ''
+      value: '',
+      pattern: ''
     }
     phoneNumber = {
       value: '',
       pattern: /^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/,
+    }
+
+    get values() {
+      return {
+        name: {
+          first: this.name.first.value,
+          last: this.name.last.value
+        },
+        email: this.email.value,
+        photo: this.photo.value,
+        gender: this.gender.value,
+        codename: this.codename.value,
+        phoneNumber: this.phoneNumber
+      }
     }
   }

@@ -21,11 +21,11 @@ angular
     }
     email = {
       value: '',
-      pattern: ''
+      pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     }
     photo = {
       value: '',
-      pattern: '/a/'
+      pattern: /(https):\/\/[^ "]/
     }
     gender = {
       value: ''
@@ -35,6 +35,6 @@ angular
     }
     phoneNumber = {
       value: '',
-      pattern: '/a/',
+      pattern: /^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/,
     }
   }

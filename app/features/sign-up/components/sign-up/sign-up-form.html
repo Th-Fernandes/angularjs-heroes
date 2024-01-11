@@ -1,30 +1,66 @@
-<form ng-submit="$ctrl.onSubmitSignUp()">
+<form ng-submit="$ctrl.onSubmitSignUp()" name="signUpForm">
   <h2>Sign-up for free</h2>
   <p>become one of our greatest heroes</p>
 
   <div>
     <label for="">first name</label>
-    <input type="text" ng-model="$ctrl.inputs.name.first.value">
+    <input 
+      type="text" 
+      name="firstName" 
+      ng-model="$ctrl.inputs.name.first.value" 
+      ng-model-options="{ debounce: 400 }"
+      ng-minlength="3" 
+      ng-required="true"
+      >
+      
+      <label for="">last name</label>
+      <input 
+      type="text" 
+      name="lastName" 
+      ng-model="$ctrl.inputs.name.last.value" 
+      ng-model-options="{ debounce: 400 }"
+      ng-minlength="3" 
+      ng-required="true"
+      >
+      <div ng-messages="signUpForm.firstName.$error || signUpForm.lastName.$error" style="color: red" role="alert">
+        <span ng-message="minlength">too short!</span>
+      </div>
 
-    <label for="">last name</label>
-    <input type="text" ng-model="$ctrl.inputs.name.last.value">
   </div>
 
   <div>
     <label for="">E-mail</label>
-    <input type="email" ng-model="$ctrl.inputs.email.value">
+    <input 
+      type="email" 
+      name="email"
+      ng-model="$ctrl.inputs.email.value"
+      ng-model-options="{ debounce: 400 }"
+      ng-pattern="$ctrl.inputs.email.pattern"
+      ng-required="true"
+    >
+    <div ng-messages="signUpForm.email.$error" style="color: red">
+      <span ng-message="pattern">Please type a valid email.</span>
+    </div>
   </div>
   <div>
     <label for="">Photo Url</label>
     <input 
       type="text" 
+      name="photoUrl"
       placeholder="ex: https://randomuser.me/api/portraits/women/13.jpg"
       ng-model="$ctrl.inputs.photo.value"
+      ng-model-options="{ debounce: 400 }"
+      ng-pattern="$ctrl.inputs.photo.pattern"
     />
+
+    <div ng-messages="signUpForm.photoUrl.$error" style="color: red" role="alert">
+      <span ng-message="pattern">you must provide a valid url</span>
+    </div>
+
   </div>
 
   <div>
-    <select name="" id="" ng-model="$ctrl.inputs.gender.value">
+    <select name="" id="" ng-model="$ctrl.inputs.gender.value" ng-required="true">
       <option value="female">female</option>
       <option value="male">male</option>
     </select>
@@ -32,11 +68,19 @@
 
   <div>
     <label for="">Codename</label>
-    <input type="text" placeholder="ex: Miss Thunder" ng-model="$ctrl.inputs.codename.value">
+    <input 
+      type="text" 
+      placeholder="ex: Miss Thunder" 
+      ng-model="$ctrl.inputs.codename.value"
+      ng-minlength="3"  
+    >
   </div>
   <div>
     <label for="">Phone Number</label>
-    <input type="tel" ng-model="$ctrl.inputs.phoneNumber.value">
+    <input type="tel" name="phoneNumber" ng-model="$ctrl.inputs.phoneNumber.value" ng-pattern="$ctrl.inputs.phoneNumber.pattern" placeholder="ex: 22990467489" ng-required>
+    <div ng-messages="signUpForm.phoneNumber.$error" style="color: red" role="alert">
+      <span ng-message="pattern">please, provide a valid phone number (Brazilian standard)</span>
+    </div>
   </div>
 
   <button type="submit">Sign Up</button>

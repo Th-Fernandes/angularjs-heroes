@@ -1,8 +1,8 @@
 angular
   .module('myApp.auth.authService', [])
   .factory('AuthService', [
-    '$rootScope', '$location', '$q', 'JwtService', '$resource',
-    function($rootScope, $location, $q , JwtService, $resource) {
+    '$rootScope', '$location', '$q', 'JwtService', '$resource', 'API_ENDPOINTS',
+    function($rootScope, $location, $q , JwtService, $resource, API_ENDPOINTS) {
       function redirectUnauthorizedUser() { 
         $rootScope.$on('$routeChangeStart', (event, next) => {
           JwtService.onRouteChanging();
@@ -24,15 +24,21 @@ angular
           })
           .then(() => {
             JwtService.storeOnClient()
-            return true
+            return $q.resolve(true)
           })
       }
 
-      function signInPromiseFactory() {
+      function signPromiseFactory() {
         return {
           isLoading: false,
           errorMessage: null
         }
+      }
+
+      function signUp() {
+        return $resource(API_ENDPOINTS.HEROES).save({test: 123}).$promise
+          .catch(() => $q.reject('API OFF'))
+          .then(() => $q.resolve(true))
       }
 
       function signOut() {
@@ -43,7 +49,8 @@ angular
       return{ 
         redirectUnauthorizedUser,
         signIn,
-        signInPromiseFactory,
+        signPromiseFactory,
+        signUp,
         signOut
       }
     }

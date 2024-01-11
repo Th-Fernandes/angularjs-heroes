@@ -3,11 +3,18 @@ angular
   .component('signUpForm', {
     templateUrl: 'features/sign-up/components/sign-up/sign-up-form.html',
     controller: [
-      function() {
+      '$location', 'AuthService', 
+      function($location, AuthService) {
         this.inputs = new SignUpInputGroupFactory();
+        this.signUpPromise = AuthService.signPromiseFactory();
 
         this.onSubmitSignUp = () => {
-          console.log(this.inputs)
+          this.signUpPromise.isLoading = true;
+
+          AuthService.signUp()
+            .catch(e => this.signUpPromise.errorMessage = e)
+            .then(hasSucceded => hasSucceded && $location.path('/heroes'))
+            .finally(() => this.signUpPromise.isLoading = false)
         }
       }
     ]

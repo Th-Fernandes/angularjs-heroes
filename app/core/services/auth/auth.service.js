@@ -108,8 +108,6 @@ angular
           this.errorMessage = `EXTERNAL ERROR: hero data recieved from sign up param method does not have "${heroModelProperty}" field`
           return isFieldMissing
         }
-        
-        return isFieldMissing
       }
     }
 

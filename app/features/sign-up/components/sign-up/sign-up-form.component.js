@@ -46,6 +46,10 @@ angular
       value: '',
       pattern: /^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/,
     }
+    password = {
+      value: '',
+      pattern: ''
+    }
 
     get values() {
       return {
@@ -57,7 +61,8 @@ angular
         photo: this.photo.value,
         gender: this.gender.value,
         codename: this.codename.value,
-        phoneNumber: this.phoneNumber
+        phoneNumber: this.phoneNumber.value,
+        password: this.password.value
       }
     }
   }

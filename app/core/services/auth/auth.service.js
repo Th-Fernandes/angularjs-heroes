@@ -35,11 +35,22 @@ angular
         }
       }
 
-      function signUp() {
-        return $resource(API_ENDPOINTS.HEROES).save({test: 123}).$promise
+      function signUp(heroData) {
+        // TODO: REFACTOR THIS SECTION INTO A NEW METHOD
+        const heroDataChecking = $q.defer()
+        const standardizedHero = new HeroModel(heroData).set()
+        if(standardizedHero.hasError) {
+          heroDataChecking.reject(standardizedHero.errorMessage)
+          return heroDataChecking.promise
+        }
+        /* ===================== */
+        
+        return $resource(API_ENDPOINTS.HEROES).save(standardizedHero).$promise
           .catch(() => $q.reject('API OFF'))
           .then(() => $q.resolve(true))
       }
+
+
 
       function signOut() {
         JwtService.removeToken();
@@ -57,3 +68,55 @@ angular
   ])
 
 
+
+  class HeroModel {
+    immutableFields = {
+      id: uuidv4(),
+      opportunities: []
+    }
+
+    mutableFields = {
+      name: {
+        first: "",
+        last: ""
+      },
+      photo: "",
+      gender: "",
+      codename: "",
+      phoneNumber: "",
+      email: "",
+      password: "",
+    }
+
+    errorMessage = ''
+
+    constructor(heroData) {
+      this.heroData = heroData
+    }
+
+    set() {
+      const checkers = [this.checkMissingFields()]
+
+      if(checkers.includes(true)) return this.getCheckFailObj()
+      return {...this.immutableFields, ...this.heroData }
+    }
+    
+    checkMissingFields() {
+      for(let heroModelProperty of Object.keys(this.mutableFields)) {
+        const isFieldMissing = !this.heroData.hasOwnProperty(heroModelProperty)
+        if(isFieldMissing) {
+          this.errorMessage = `EXTERNAL ERROR: hero data recieved from sign up param method does not have "${heroModelProperty}" field`
+          return isFieldMissing
+        }
+        
+        return isFieldMissing
+      }
+    }
+
+    getCheckFailObj() {
+      return {
+        hasError: true,
+        errorMessage: this.errorMessage
+      }
+    }
+  }

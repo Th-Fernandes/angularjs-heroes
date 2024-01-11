@@ -7,19 +7,21 @@ angular.module("myApp.signIn.signInFormComponent", []).component("signInForm", {
     "AuthService",
     function ($location, AuthService) {
       this.inputs = new InputGroupFactory();
-      this.signInPromise = AuthService.signInPromiseFactory(); 
+      this.signInPromise = AuthService.signPromiseFactory(); 
 
       this.onSubmitSignInCredentials = () => {
         this.signInPromise.isLoading = true;
 
         AuthService.signIn(this.inputs.values)
-          .catch(errorMessage => {
-            this.signInPromise.errorMessage = errorMessage
-            cleanUpInputs()
-          })
+          .catch(errorMessage => onSignInError(errorMessage))
           .then((hasSignInSucceded) => hasSignInSucceded && $location.path("/heroes"))
           .finally(() => this.signInPromise.isLoading = false)
       };
+
+      const onSignInError = (errorMessage) => {
+        this.signInPromise.errorMessage = errorMessage;
+        cleanUpInputs();
+      }
 
       const cleanUpInputs = () => {
         const cleanedUpCredentials = new InputGroupFactory();

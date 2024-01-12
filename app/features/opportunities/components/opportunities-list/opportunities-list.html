@@ -1,0 +1,10 @@
+<section>
+  <ul>
+    <li ng-repeat="opportunity in $ctrl.opportunities">
+      <h2>{{opportunity.title}}</h2>
+      <p>{{opportunity.description}}</p>
+      <small> There is {{opportunity.volunteers.length}} applied volunteers</small>
+      <button>Apply</button>
+    </li>
+  </ul>
+</section>

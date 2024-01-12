@@ -1,13 +1,16 @@
 "use strict";
 
 angular
-  .module("myApp.opportunities", [])
+  .module("myApp.opportunities", [
+    'myApp.opportunities.opportunitiesService',
+    'myApp.opportunities.opportunitiesListComponent',
+  ])
   .config([
     "$routeProvider",
     function($routeProvider) {
       $routeProvider
         .when("/opportunities", {
-          template: '<h1> HELLO WORLD </h1>'
+          template: '<opportunities-list></opportunities-list>',    
         })
     }
   ])

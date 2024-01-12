@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
+  <title>Heroes AngularJS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
@@ -19,7 +20,7 @@
 </head>
 <body>
   <layout-header></layout-header> 
-  <div ng-view></div>
+  <div ng-view class="p-4"></div>
   <!--ANGULAR CORE-->
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular-route/angular-route.js"></script>
@@ -28,6 +29,7 @@
   <!--THIRD PARTY LIBS-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.8.3/angular-messages.js"></script>
   <script src="https://unpkg.com/uuid@8.1.0/dist/umd/uuidv4.min.js"></script>
+  
   <!--ROUTE FEATURES-->
   <script src="features/dashboard/dashboard.config.js"></script>
   <script src="features/heroes/heroes.config.js"></script>

@@ -1,15 +1,25 @@
 <div>
-  <h2>List of heroes</h2>
+  <h2 class="text-3xl font-bold ">List of heroes</h2>
+  <p class="mb-4">Take a closer look at one of the best heroes from our platform!</p>
+
   <p ng-if="$ctrl.heroes.hasFetchFailed">
     Ops! something went wrong. It looks like we can not show to you our list of heroes.
     Please try again soon.
   </p>
 
 
-  <ul ng-if="$ctrl.heroes.data.length > 0">
-    <li ng-repeat="hero in $ctrl.heroes.data">
-      <a ng-href="#!/heroes/{{hero.id}}">
-        {{hero.name.first + ' ' + hero.name.last}}
+  <ul ng-if="$ctrl.heroes.data.length > 0" class="flex gap-2 flex-col">
+    <li ng-repeat="hero in $ctrl.heroes.data" class="hover:bg-gray-100"> 
+      <a ng-href="#!/heroes/{{hero.id}}" class="flex justify-between">
+        <div class="flex gap-4">
+          <img class="rounded-full w-12" src="{{hero.photo}}" alt="">
+        
+          <div>
+            <h3>{{hero.codename}}</h3>
+            <small>{{hero.name.first}} {{hero.name.last}} </small>
+          </div>
+        </div>
+        <button class="border border-gray-400 rounded-lg p-1 font-bold hover:bg-[#36558F] hover:text-white transition-all">Take a look!</button>
       </a>
     </li>
   </ul>

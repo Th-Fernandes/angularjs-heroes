@@ -50,8 +50,6 @@ angular
           .then(() => $q.resolve(true))
       }
 
-
-
       function signOut() {
         JwtService.removeToken();
         $location.path('/sign-in');
@@ -67,14 +65,10 @@ angular
     }
   ])
 
-
-
   class HeroModel {
     immutableFields = {
       id: uuidv4(),
-      opportunities: []
     }
-
     mutableFields = {
       name: {
         first: "",
@@ -105,7 +99,7 @@ angular
       for(let heroModelProperty of Object.keys(this.mutableFields)) {
         const isFieldMissing = !this.heroData.hasOwnProperty(heroModelProperty)
         if(isFieldMissing) {
-          this.errorMessage = `EXTERNAL ERROR: hero data recieved from sign up param method does not have "${heroModelProperty}" field`
+          this.errorMessage = `EXTERNAL ERROR: hero data received from sign up param method does not have "${heroModelProperty}" field`
           return isFieldMissing
         }
       }

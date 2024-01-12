@@ -15,6 +15,7 @@ angular
     'myApp.signUp',
     'myApp.layout.header',
     'myApp.heroesService',
+    'myApp.opportunities'
   ])
   .run([
     'AuthService',

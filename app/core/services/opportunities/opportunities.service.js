@@ -27,7 +27,6 @@ angular
             return this.$q.resolve(signedInUserOpportunities);
           })
           .catch(() => $q.reject('API is not responding'));
-
       }
 
       #filterByCreatorId(opportunities) {

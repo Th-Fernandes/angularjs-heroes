@@ -1,0 +1,13 @@
+<section ng-if="$ctrl.opportunities.data">
+  <h2>My opportunities</h2>
+  <p>Take a look on opportunities published by you.</p>
+
+  <ul>
+    <li ng-repeat="opportunity in $ctrl.opportunities.data">
+      <h3>{{opportunity.title}}</h3>
+      <p>{{opportunity.description}}</p>
+      <small>There is {{opportunity.volunteers.length}} applied volunteers.</small>
+      <button>Take a look</button>
+    </li>
+  </ul>
+</section>

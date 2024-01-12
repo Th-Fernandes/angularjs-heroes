@@ -6,9 +6,9 @@ angular
       function redirectUnauthorizedUser() { 
         $rootScope.$on('$routeChangeStart', (event, next) => {
           JwtService.onRouteChanging();
-          const { isTokenUnavailable } = JwtService.getToken();
+          const { isUnavailable } = JwtService.getToken();
 
-          if(next.$$route?.private && isTokenUnavailable) 
+          if(next.$$route?.private && isUnavailable) 
             $location.path('/sign-in');
         })
       }

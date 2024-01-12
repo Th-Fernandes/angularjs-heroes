@@ -24,14 +24,12 @@ angular.module("myApp.auth.jwtService", []).factory("JwtService", [
     }
 
     function onRouteChanging() {
-      const { token, isTokenUnavailable } = getToken();
-      if(isTokenUnavailable) return null;
-
+      const token = getToken();
+      if ( token.isUnavailable ) return null;
+      
       provideUserTokenGlobally();
 
-      const isUserTokenExpired = getDaysInMilliseconds() > token.expiry;
-      if (isUserTokenExpired) removeToken();
-      
+      if ( token.isExpired() ) removeToken();
       return token.value;
     }
 
@@ -43,8 +41,11 @@ angular.module("myApp.auth.jwtService", []).factory("JwtService", [
     function getToken() {
       const userTokenStr = $window.localStorage.getItem(USER_TOKEN_ITEM_KEY);
       return {
-        token: JSON.parse( userTokenStr),
-        isTokenUnavailable: !userTokenStr
+        ...JSON.parse( userTokenStr),
+        isUnavailable: !userTokenStr,
+        isExpired() {
+          return getDaysInMilliseconds() > this.expiry
+        }
       }
     }
     

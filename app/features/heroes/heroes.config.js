@@ -4,7 +4,6 @@ angular
   .module("myApp.heroes", [
     "ngRoute",
     "myApp.heroes.listComponent", 
-    "myApp.heroes.addHeroFormComponent",
     "myApp.heroes.heroDetailsComponent",
     "myApp.heroes.heroOpportunitiesComponent",
   ])

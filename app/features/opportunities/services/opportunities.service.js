@@ -13,5 +13,13 @@ angular
       get() {
         return this.#opportunities.$promise
       }
+
+      opportunitiesPromiseFactory() {
+        return  {
+          data: undefined , 
+          hasFetchFailed: false, 
+          isFetchLoading: true
+        }
+      }
     }
   ])

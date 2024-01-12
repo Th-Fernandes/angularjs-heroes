@@ -1,9 +1,24 @@
 <section>
   <ul>
-    <li ng-repeat="opportunity in $ctrl.opportunities">
+    <!--ON FETCH LOADING-->
+    <h2 ng-if="$ctrl.opportunities.isFetchLoading">Loading...</h2>
+    <!--ON FAIL-->
+    <div ng-if="$ctrl.opportunities.hasFetchFailed">
+      <h2>Oh no!</h2>
+      <p>
+        Something went wrong on our end during fetching opportunities data :(
+      </p>
+      <button>
+        <a href="#!/heroes">Go to heroes page</a>
+      </button>
+    </div>
+    <!-- ON RESOLVE-->
+    <li ng-repeat="opportunity in $ctrl.opportunities.data">
       <h2>{{opportunity.title}}</h2>
       <p>{{opportunity.description}}</p>
-      <small> There is {{opportunity.volunteers.length}} applied volunteers</small>
+      <small>
+        There is {{opportunity.volunteers.length}} applied volunteers</small
+      >
       <button>Apply</button>
     </li>
   </ul>

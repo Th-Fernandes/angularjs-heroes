@@ -14,7 +14,7 @@ angular.module("myApp.signIn", ["myApp.signIn.signInFormComponent"])
 const RedirectSignedInUserController = [
   "$location", "JwtService",
   function ($location, JwtService) {
-    const { isTokenUnavailable } = JwtService.getToken();
-    if (!isTokenUnavailable) $location.path("/heroes");
+    const token = JwtService.getToken();
+    if (!token.isUnavailable) $location.path("/heroes");
   },
 ];

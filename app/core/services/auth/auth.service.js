@@ -6,9 +6,9 @@ angular
       function redirectUnauthorizedUser() { 
         $rootScope.$on('$routeChangeStart', (event, next) => {
           JwtService.onRouteChanging();
-          const { isTokenUnavailable } = JwtService.getToken();
+          const { isUnavailable } = JwtService.getToken();
 
-          if(next.$$route?.private && isTokenUnavailable) 
+          if(next.$$route?.private && isUnavailable) 
             $location.path('/sign-in');
         })
       }
@@ -22,8 +22,9 @@ angular
             if(!res[0]) return $q.reject('user not found')
             return res
           })
-          .then(() => {
-            JwtService.storeOnClient()
+          .then((res) => {
+            const signedInUserId = res[0].id
+            JwtService.storeOnClient(signedInUserId)
             return $q.resolve(true)
           })
       }

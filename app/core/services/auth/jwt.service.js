@@ -3,8 +3,10 @@ angular.module("myApp.auth.jwtService", []).factory("JwtService", [
   "$window",
   function ($rootScope, $window) {
     const USER_TOKEN_ITEM_KEY = 'JWT';
+    let SIGNED_IN_USER_ID = ''
 
-    function storeOnClient() {
+    function storeOnClient(signedInUserId) {
+      SIGNED_IN_USER_ID = signedInUserId
       const userToken = createUserToken();
       localStorage.setItem(USER_TOKEN_ITEM_KEY, JSON.stringify(userToken));
     }
@@ -12,7 +14,7 @@ angular.module("myApp.auth.jwtService", []).factory("JwtService", [
     function createUserToken() {
       const DAY_IN_MILlISECONDS = 86400000; 
       return {
-        value: uuidv4(),
+        value: SIGNED_IN_USER_ID,
         expiry: getDaysInMilliseconds() + DAY_IN_MILlISECONDS,
       };
     }
@@ -22,14 +24,12 @@ angular.module("myApp.auth.jwtService", []).factory("JwtService", [
     }
 
     function onRouteChanging() {
-      const { token, isTokenUnavailable } = getToken();
-      if(isTokenUnavailable) return null;
-
+      const token = getToken();
+      if ( token.isUnavailable ) return null;
+      
       provideUserTokenGlobally();
 
-      const isUserTokenExpired = getDaysInMilliseconds() > token.expiry;
-      if (isUserTokenExpired) removeToken();
-      
+      if ( token.isExpired() ) removeToken();
       return token.value;
     }
 
@@ -41,8 +41,11 @@ angular.module("myApp.auth.jwtService", []).factory("JwtService", [
     function getToken() {
       const userTokenStr = $window.localStorage.getItem(USER_TOKEN_ITEM_KEY);
       return {
-        token: JSON.parse( userTokenStr),
-        isTokenUnavailable: !userTokenStr
+        ...JSON.parse( userTokenStr),
+        isUnavailable: !userTokenStr,
+        isExpired() {
+          return getDaysInMilliseconds() > this.expiry
+        }
       }
     }
     

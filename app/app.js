@@ -13,9 +13,10 @@ angular
     'myApp.auth',
     'myApp.signIn',
     'myApp.signUp',
+    'myApp.opportunitiesService',
     'myApp.layout.header',
     'myApp.heroesService',
-    'myApp.opportunities'
+    'myApp.opportunities',
   ])
   .run([
     'AuthService',

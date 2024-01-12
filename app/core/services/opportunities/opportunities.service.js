@@ -1,11 +1,12 @@
 angular
-  .module('myApp.opportunities.opportunitiesService', [])
+  .module('myApp.opportunitiesService', [])
   .factory('OpportunitiesService', [
-    '$resource',
+    '$resource', 'JwtService',
     class {
       #opportunities;
 
-      constructor($resource) {
+      constructor($resource, JwtService) {
+        console.log(JwtService.getToken())
         this.#opportunities = $resource('http://localhost:3000/opportunities?_sort=createdAt&_order=desc')
           .query()
       }

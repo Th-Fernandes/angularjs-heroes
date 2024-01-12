@@ -115,7 +115,7 @@
     <input type="password" ng-minlength="8" ng-model="$ctrl.inputs.password.value">
   </div>
 
-  <button type="submit" ng-disabled="$ctrl.signUpPromise.isLoading">
+  <button type="submit" ng-disabled="signUpForm.$invalid || $ctrl.signUpPromise.isLoading">
     Sign Up
   </button>
 </form>

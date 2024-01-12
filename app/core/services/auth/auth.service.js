@@ -22,8 +22,9 @@ angular
             if(!res[0]) return $q.reject('user not found')
             return res
           })
-          .then(() => {
-            JwtService.storeOnClient()
+          .then((res) => {
+            const signedInUserId = res[0].id
+            JwtService.storeOnClient(signedInUserId)
             return $q.resolve(true)
           })
       }

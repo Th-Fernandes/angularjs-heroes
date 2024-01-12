@@ -3,8 +3,10 @@ angular.module("myApp.auth.jwtService", []).factory("JwtService", [
   "$window",
   function ($rootScope, $window) {
     const USER_TOKEN_ITEM_KEY = 'JWT';
+    let SIGNED_IN_USER_ID = ''
 
-    function storeOnClient() {
+    function storeOnClient(signedInUserId) {
+      SIGNED_IN_USER_ID = signedInUserId
       const userToken = createUserToken();
       localStorage.setItem(USER_TOKEN_ITEM_KEY, JSON.stringify(userToken));
     }
@@ -12,7 +14,7 @@ angular.module("myApp.auth.jwtService", []).factory("JwtService", [
     function createUserToken() {
       const DAY_IN_MILlISECONDS = 86400000; 
       return {
-        value: uuidv4(),
+        value: SIGNED_IN_USER_ID,
         expiry: getDaysInMilliseconds() + DAY_IN_MILlISECONDS,
       };
     }

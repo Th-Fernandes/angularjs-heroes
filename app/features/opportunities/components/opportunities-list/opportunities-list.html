@@ -1,26 +1,26 @@
 <section>
-  <ul>
-    <!--ON FETCH LOADING-->
-    <h2 ng-if="$ctrl.opportunities.isFetchLoading">Loading...</h2>
-    <!--ON FAIL-->
-    <div ng-if="$ctrl.opportunities.hasFetchFailed">
-      <h2>Oh no!</h2>
-      <p>
-        Something went wrong on our end during fetching opportunities data :(
+  <!--ON FETCH LOADING-->
+  <h2 ng-if="$ctrl.opportunities.isFetchLoading">Loading...</h2>
+  <!--ON FAIL-->
+  <div ng-if="$ctrl.opportunities.hasFetchFailed">
+    <h2>Oh no!</h2>
+    <p>
+      Something went wrong on our end during fetching opportunities data :(
       </p>
       <button>
         <a href="#!/heroes">Go to heroes page</a>
       </button>
     </div>
     <!-- ON RESOLVE-->
-    <li ng-repeat="opportunity in $ctrl.opportunities.data">
-      <h2>{{opportunity.title}}</h2>
-      <p>{{opportunity.description}}</p>
-      <small>
-        There is {{opportunity.volunteers.length}} applied volunteers</small
-      >
-      <small>created at {{opportunity.createdAt | millisecondsToDate}}</small>
-      <button>Apply</button>
-    </li>
-  </ul>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <li ng-repeat="opportunity in $ctrl.opportunities.data" class="bg-blue-100 p-2 sm:p-4 rounded-lg">
+        <h3 class="text-lg font-bold">{{opportunity.title}}</h3>
+        <p>{{opportunity.description}}</p>
+        <small>
+          There is {{opportunity.volunteers.length}} applied volunteers</small
+        >
+        <small class="block">created at {{opportunity.createdAt | millisecondsToDate}}</small>
+        <button class="border border-gray-400 w-full rounded-lg p-2 mt-4 hover:bg-[#36558F] hover:text-white transition-all font-bold">Apply</button>
+      </li>
+    </ul>
 </section>

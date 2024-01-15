@@ -1,0 +1,87 @@
+{
+  "heroes": [
+    {
+      "id": "2e2fb5e9-c905-4800-9f7a-4d98e69b080f",
+      "name": {
+        "first": "John",
+        "last": "Ocean"
+      },
+      "photo": "https://randomuser.me/api/portraits/men/0.jpg",
+      "gender": "male",
+      "codename": "Mr Oxygen",
+      "phoneNumber": "21999999999",
+      "email": "johnOcean@heroes.com",
+      "password": "ABC12340"
+    },
+    {
+      "id": "853bd7af-36f4-4c73-842f-0cb6ee69b30c",
+      "name": {
+        "first": "Jane",
+        "last": "Sky"
+      },
+      "photo": "https://randomuser.me/api/portraits/women/13.jpg",
+      "gender": "female",
+      "codename": "Ms Atmosphere",
+      "phoneNumber": "21999998888",
+      "email": "janeSky@heroes.com",
+      "password": "XYZ98765"
+    },
+    {
+      "id": "f3cf1f7a-97a7-4d14-a28b-6dbd98e3f0af",
+      "name": {
+        "first": "Jack",
+        "last": "Ocean"
+      },
+      "photo": "https://randomuser.me/api/portraits/men/2.jpg",
+      "gender": "male",
+      "codename": "Captain Nebula",
+      "phoneNumber": "2123456789",
+      "email": "jackOcean@heroes.com",
+      "password": "DEF56789"
+    },
+    {
+      "id": "9e4858df-43c1-4bb5-9cda-8ac5d2d1e6a1",
+      "name": {
+        "first": "James",
+        "last": "Ocean"
+      },
+      "photo": "https://randomuser.me/api/portraits/men/5.jpg",
+      "gender": "male",
+      "codename": "Mr Oxygen",
+      "phoneNumber": "21999999999",
+      "email": "jamesOcean@heroes.com",
+      "password": "ABC12340"
+    },
+    {
+      "id": "8e593f9e-9ac2-4a74-bb6b-1b0cf9e45e3c",
+      "name": {
+        "first": "John",
+        "last": "Doe"
+      },
+      "photo": "https://randomuser.me/api/portraits/men/13.jpg",
+      "gender": "male",
+      "codename": "Captain Nebula",
+      "phoneNumber": "21999999999",
+      "email": "johnDoe@heroes.com",
+      "password": "ABC12340"
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "9e77b51a-2bee-4de3-87b4-beb5a415029b",
+      "createdAt": 1704998955745,
+      "creatorID": "2e2fb5e9-c905-4800-9f7a-4d98e69b080f",
+      "title": "Police officer for a day",
+      "description": "imagine a cool description here",
+      "volunteers": []
+    },
+    {
+      "id": "32e89876-2767-442d-9507-31040c80d623",
+      "createdAt": 1704999094218,
+      "creatorID": "2e2fb5e9-c905-4800-9f7a-4d98e69b080fa",
+      "title": "the league - intern",
+      "description": "imagine a cool description here",
+      "volunteers": []
+    }
+  ]
+}

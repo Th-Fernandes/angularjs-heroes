@@ -12,8 +12,8 @@ angular
         this.#error = null
       }
 
-      setError(error) {
-        this.#error = error;
+      notifyError() {
+        this.#error = true;
       }
 
       get hasErrors() {

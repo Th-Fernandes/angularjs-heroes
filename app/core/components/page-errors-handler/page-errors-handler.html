@@ -1,1 +1,10 @@
-<h1>hallow from erro</h1>
+<div ng-if="$ctrl.errorHandler.hasErrors">
+  <h2>Something Went wrong!</h2>
+</div>
+
+<div ng-if="!$ctrl.errorHandler.hasErrors">
+  <ng-transclude> 
+  
+  </ng-transclude>
+</div>
+

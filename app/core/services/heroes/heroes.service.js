@@ -10,8 +10,7 @@ angular
       /* object handle FETCH heroes standardized */
       heroesPromiseFactory() {
         return  {
-          data: undefined , 
-          hasFetchFailed: false, 
+          data: undefined, 
           isFetchLoading: true
         }
       }

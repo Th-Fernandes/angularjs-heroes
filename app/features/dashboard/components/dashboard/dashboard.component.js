@@ -7,12 +7,11 @@ angular
       class {
         constructor(HeroesService, PageErrorsHandlerService) {
           this.hero = HeroesService.heroesPromiseFactory();
-          this.setHero = (newValue) => Object.assign(this.hero, newValue);
-          
+
           HeroesService.heroes.$promise
-            .then(heroes => this.setHero({data: heroes.at(-1)}))
+            .then(heroes => this.hero.data = heroes.at(-1))
             .catch(() => PageErrorsHandlerService.notifyError())
-            .finally(() => this.setHero({ isFetchLoading: false }));
+            .finally(() => this.hero.isFetchLoading = false);
         }
       }
     ]

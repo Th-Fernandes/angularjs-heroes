@@ -10,7 +10,7 @@ angular
 
           HeroesService.heroes.$promise
             .then(heroes => this.hero.data = heroes.at(-1))
-            .catch(() => PageErrorsHandlerService.notifyError())
+            // .catch(() => PageErrorsHandlerService.notifyError())
             .finally(() => this.hero.isFetchLoading = false);
         }
       }

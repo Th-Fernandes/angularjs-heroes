@@ -4,8 +4,9 @@ angular
     templateUrl: 'core/components/page-errors-handler/page-errors-handler.html', 
     transclude: true,
     controller: [
-      function() { 
-        this.errorHandler = {hasErrors: true}
+      'PageErrorsHandlerService',
+      function( PageErrorsHandlerService) { 
+        this.errorHandler = PageErrorsHandlerService
       }
     ],
   })

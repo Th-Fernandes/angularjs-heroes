@@ -17,7 +17,8 @@ angular
     'myApp.layout.header',
     'myApp.heroesService',
     'myApp.opportunities',
-    'myApp.core.components'
+    'myApp.core.components',
+    'myApp.core.services.pageErrorsHandlerService'
   ])
   .run([
     'AuthService',

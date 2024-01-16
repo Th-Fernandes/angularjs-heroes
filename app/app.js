@@ -17,6 +17,7 @@ angular
     'myApp.layout.header',
     'myApp.heroesService',
     'myApp.opportunities',
+    'myApp.core.components'
   ])
   .run([
     'AuthService',

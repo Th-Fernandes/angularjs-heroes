@@ -2,12 +2,6 @@
   <h2 class="text-3xl font-bold ">List of heroes</h2>
   <p class="mb-4">Take a closer look at one of the best heroes from our platform!</p>
 
-  <p ng-if="$ctrl.heroes.hasFetchFailed">
-    Ops! something went wrong. It looks like we can not show to you our list of heroes.
-    Please try again soon.
-  </p>
-
-
   <ul ng-if="$ctrl.heroes.data.length > 0" class="flex gap-2 flex-col">
     <li ng-repeat="hero in $ctrl.heroes.data" class="hover:bg-gray-100"> 
       <a ng-href="#!/heroes/{{hero.id}}" class="flex justify-between">

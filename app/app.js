@@ -21,8 +21,11 @@ angular
     'myApp.core.services.pageErrorsHandlerService'
   ])
   .run([
-    'AuthService',
-    AuthService => AuthService.redirectUnauthorizedUser()
+    'AuthService', 'PageErrorsHandlerService',
+    AuthService => {
+      AuthService.redirectUnauthorizedUser()
+      PageErrorsHandlerService.clearPreviousErrors()
+    }
   ])
   .constant('API_ENDPOINTS', {
     HEROES: 'http://localhost:3000/heroes'

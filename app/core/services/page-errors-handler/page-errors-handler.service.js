@@ -3,13 +3,10 @@ angular
   .factory('PageErrorsHandlerService', [
     class {
       #error = null;
-
-      constructor() {
-        this.#clearPreviousErrors();
-      }
       
-      #clearPreviousErrors() {
+      clearPreviousErrors() {
         this.#error = null
+        console.log(this.#error)
       }
 
       notifyError() {

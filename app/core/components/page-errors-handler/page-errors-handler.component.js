@@ -4,9 +4,10 @@ angular
     templateUrl: 'core/components/page-errors-handler/page-errors-handler.html', 
     transclude: true,
     controller: [
-      'PageErrorsHandlerService',
-      function( PageErrorsHandlerService) { 
+      'PageErrorsHandlerService', '$window',
+      function( PageErrorsHandlerService, $window) { 
         this.errorHandler = PageErrorsHandlerService
+        this.refreshPage = () => $window.location.reload()
       }
     ],
   })

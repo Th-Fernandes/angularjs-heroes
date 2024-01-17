@@ -19,7 +19,8 @@ angular
             '</page-errors-handler>',
           })
         .when("/opportunities/publish", {
-          template: '<publish-opportunity-form></publish-opportunity-form>'
+          template: '<publish-opportunity-form></publish-opportunity-form>',
+          private: true
         })    
     }
   ])

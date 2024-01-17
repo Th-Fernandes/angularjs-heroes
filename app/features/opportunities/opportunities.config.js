@@ -13,8 +13,11 @@ angular
           template: 
             '<page-errors-handler>'+
               '<opportunities-list></opportunities-list>'+
-            '</page-errors-handler>',    
-        })
+            '</page-errors-handler>',
+          })
+        .when("/opportunities/publish", {
+          template: 'hello opportunities!'
+        })    
     }
   ])
 

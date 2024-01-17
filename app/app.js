@@ -22,7 +22,7 @@ angular
   ])
   .run([
     'AuthService', 'PageErrorsHandlerService',
-    AuthService => {
+    (AuthService, PageErrorsHandlerService) => {
       AuthService.redirectUnauthorizedUser()
       PageErrorsHandlerService.clearPreviousErrors()
     }

@@ -3,6 +3,7 @@
 angular
   .module("myApp.opportunities", [
     'myApp.opportunities.opportunitiesListComponent',
+    'myApp.opportunities.publishOpportunityRedirectorComponent',
     'myApp.opportunities.millisecondsToDate'
   ])
   .config([
@@ -12,11 +13,12 @@ angular
         .when("/opportunities", {
           template: 
             '<page-errors-handler>'+
+              '<publish-opportunity-redirector> </publish-opportunity-redirector>'+
               '<opportunities-list></opportunities-list>'+
             '</page-errors-handler>',
           })
         .when("/opportunities/publish", {
-          template: 'hello opportunities!'
+          template: 'hi'
         })    
     }
   ])

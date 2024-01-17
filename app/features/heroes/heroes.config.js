@@ -13,11 +13,16 @@ angular
       $routeProvider
         .when("/heroes", {
           template: 
-            '<heroes-list> </heroes-list>'+
-            '<add-hero-form> </add-hero-form>',      
+            '<page-errors-handler>'+
+              '<heroes-list> </heroes-list>'+
+              '<add-hero-form> </add-hero-form>'+     
+            '</page-errors-handler>',
         })
         .when("/heroes/:uuid", {
-          template: '<hero-details> </hero-details>',
+          template: 
+          '<page-errors-handler>'+
+            '<hero-details> </hero-details>'+
+          '</page-errors-handler>',
           private: true
         })
     },

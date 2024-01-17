@@ -3,14 +3,15 @@ angular
   .component('signedInHeroOpportunities', {
     templateUrl: 'features/dashboard/components/signed-in-hero-opportunities/signed-in-hero-opportunities.html',
     controller: [
-      'OpportunitiesService',
-      function(OpportunitiesService) {
+      'OpportunitiesService', 'PageErrorsHandlerService',
+      function(OpportunitiesService, PageErrorsHandlerService) {
         this.opportunities = OpportunitiesService.opportunitiesPromiseFactory();
-        
+
         OpportunitiesService.getByCreatorId()
           .then(res => this.opportunities.data = res)
-          .catch(() => this.opportunities.hasFetchFailed = true)
+          .catch(() => PageErrorsHandlerService.notifyError())
           .finally(() => this.opportunities.isFetchLoading = false)
+       
       }
     ]
   })

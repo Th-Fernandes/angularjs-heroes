@@ -12,8 +12,10 @@ angular
       $routeProvider
         .when("/dashboard", {
           template: 
-          '<last-created-hero></last-created-hero>'+ 
-          '<signed-in-hero-opportunities></signed-in-hero-opportunities>'
+          '<page-errors-handler>'+ 
+            '<last-created-hero></last-created-hero>'+ 
+            '<signed-in-hero-opportunities></signed-in-hero-opportunities>'+
+          '</page-errors-handler>'
         })
     },
   ]);

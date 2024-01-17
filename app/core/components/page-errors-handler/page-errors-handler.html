@@ -1,0 +1,17 @@
+<div ng-if="$ctrl.errorHandler.hasErrors" class="flex flex-col items-center justify-center">
+  <img src="assets/smiley-sad-fill.svg" alt="">
+  <h2 class="text-2xl font-bold">Something Went wrong!</h2>
+  <p class="max-w-[50%] mx-auto text-center text-gray-400">
+    Sorry for the inconvenient, but it seems that we could not 
+    load the content properly. Please try again in a couple of minutes.
+  </p>
+
+  <button ng-click="$ctrl.refreshPage()" class="border border-black rounded-lg p-1 mt-4 hover:bg-black hover:text-white font-bold transition-colors">Try again</button>
+</div>
+
+<div ng-if="!$ctrl.errorHandler.hasErrors">
+  <ng-transclude> 
+  
+  </ng-transclude>
+</div>
+

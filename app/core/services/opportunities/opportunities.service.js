@@ -36,7 +36,6 @@ angular
       opportunitiesPromiseFactory() {
         return {
           data: undefined,
-          hasFetchFailed: false,
           isFetchLoading: true,
         };
       }

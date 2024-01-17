@@ -3,18 +3,15 @@ angular
   .component('lastCreatedHero', {
     templateUrl: 'features/dashboard/components/dashboard/dashboard.html',
     controller: [
-      'HeroesService', '$window',
+      'HeroesService','PageErrorsHandlerService',
       class {
-        constructor(HeroesService, $window) {
+        constructor(HeroesService, PageErrorsHandlerService) {
           this.hero = HeroesService.heroesPromiseFactory();
-          this.setHero = (newValue) => Object.assign(this.hero, newValue);
-          this.refreshPage = () => $window.location.reload();
-          
-          HeroesService.heroes.$promise
-            .then(heroes => this.setHero({data: heroes.at(-1)}))
-            .catch(() => this.setHero({ hasFetchFailed: true }))
-            .finally(() => this.setHero({ isFetchLoading: false }));
 
+          HeroesService.heroes.$promise
+            .then(heroes => this.hero.data = heroes.at(-1))
+            // .catch(() => PageErrorsHandlerService.notifyError())
+            .finally(() => this.hero.isFetchLoading = false);
         }
       }
     ]

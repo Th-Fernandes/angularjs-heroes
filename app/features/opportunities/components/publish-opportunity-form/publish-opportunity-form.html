@@ -1,0 +1,17 @@
+<section>
+  <h2>Publish Hero</h2>
+
+  <form ng-submit="$ctrl.onSubmitOpportunity()">
+    <div>
+      <label for="">Title</label>
+      <input type="text" ng-model="$ctrl.opportunity.title"/>
+    </div>
+
+    <div>
+      <label for="opportunityDescription">Description</label>
+      <textarea name="" id="opportunityDescription" ng-model="$ctrl.opportunity.description"></textarea>
+    </div>
+
+    <button>Publish!</button>
+  </form>
+</section>

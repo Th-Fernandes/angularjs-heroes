@@ -4,6 +4,7 @@ angular
   .module("myApp.opportunities", [
     'myApp.opportunities.opportunitiesListComponent',
     'myApp.opportunities.publishOpportunityRedirectorComponent',
+    'myApp.opportunities.publishOpportunityFormComponent',
     'myApp.opportunities.millisecondsToDate'
   ])
   .config([
@@ -18,7 +19,7 @@ angular
             '</page-errors-handler>',
           })
         .when("/opportunities/publish", {
-          template: 'hi'
+          template: '<publish-opportunity-form></publish-opportunity-form>'
         })    
     }
   ])

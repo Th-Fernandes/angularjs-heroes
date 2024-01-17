@@ -10,7 +10,10 @@ angular
     function($routeProvider) {
       $routeProvider
         .when("/opportunities", {
-          template: '<opportunities-list></opportunities-list>',    
+          template: 
+            '<page-errors-handler>'+
+              '<opportunities-list></opportunities-list>'+
+            '</page-errors-handler>',    
         })
     }
   ])

@@ -3,13 +3,13 @@ angular
   .component('opportunitiesList', {
     templateUrl: 'features/opportunities/components/opportunities-list/opportunities-list.html',
     controller: [
-      'OpportunitiesService',
-      function(OpportunitiesService) {
+      'OpportunitiesService', 'PageErrorsHandlerService',
+      function(OpportunitiesService, PageErrorsHandlerService) {
         this.opportunities = OpportunitiesService.opportunitiesPromiseFactory()
 
         OpportunitiesService.get()
           .then(opportunities => this.opportunities.data = opportunities)
-          .catch(() => this.opportunities.hasFetchFailed = true)
+          .catch(() => PageErrorsHandlerService.notifyError())
           .finally(() => this.opportunities.isFetchLoading = false)
         
       }

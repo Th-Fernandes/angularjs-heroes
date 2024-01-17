@@ -3,17 +3,6 @@
   <div ng-if="$ctrl.hero.isFetchLoading">
     <h2>Loading...</h2>
   </div>
-  <!-- When hero fetch fails-->
-  <div ng-if="$ctrl.hero.hasFetchFailed">
-    <h2>Hero not found</h2>
-    <p>
-      ops! it looks like the hero you are looking for does not exists or it is
-      unavailable
-    </p>
-    <button>
-      <a href="#!/heroes"> go back to heroes page </a>
-    </button>
-  </div>
   <!-- When hero fetch resolves-->
   <div ng-if="$ctrl.hero.data">
     <img
@@ -47,7 +36,7 @@
   </div>
 </section>
 
-<section>
+<section ng-if="!$ctrl.hero.isFetchLoading">
   <hero-opportunities opportunities="$ctrl.hero.data.opportunities">
   </hero-opportunities>
 </section>

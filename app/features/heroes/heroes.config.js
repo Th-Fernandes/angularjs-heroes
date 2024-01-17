@@ -19,7 +19,10 @@ angular
             '</page-errors-handler>',
         })
         .when("/heroes/:uuid", {
-          template: '<hero-details> </hero-details>',
+          template: 
+          '<page-errors-handler>'+
+            '<hero-details> </hero-details>'+
+          '</page-errors-handler>',
           private: true
         })
     },

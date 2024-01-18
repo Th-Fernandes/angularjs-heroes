@@ -5,7 +5,7 @@ angular
     controller: [
       'HeroesService','PageErrorsHandlerService',
       function (HeroesService, PageErrorsHandlerService) {
-        this.heroes = HeroesService.heroesPromiseFactory();
+        this.heroes = HeroesService.GETLifeCycle();
         
         HeroesService.GET()
           .catch(() => PageErrorsHandlerService.notifyError())

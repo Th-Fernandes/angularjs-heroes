@@ -6,7 +6,7 @@ angular
       'HeroesService','PageErrorsHandlerService',
       class {
         constructor(HeroesService, PageErrorsHandlerService) {
-          this.hero = HeroesService.heroesPromiseFactory();
+          this.hero = HeroesService.GETLifeCycle();
 
           HeroesService.GET()
             .then(heroes => this.hero.data = heroes.at(-1))

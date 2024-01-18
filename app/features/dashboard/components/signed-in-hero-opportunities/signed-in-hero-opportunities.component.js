@@ -5,7 +5,7 @@ angular
     controller: [
       'OpportunitiesService', 'PageErrorsHandlerService',
       function(OpportunitiesService, PageErrorsHandlerService) {
-        this.opportunities = OpportunitiesService.opportunitiesPromiseFactory();
+        this.opportunities = OpportunitiesService.GETLifeCycle();
 
         OpportunitiesService.getByCreatorId()
           .then(res => this.opportunities.data = res)

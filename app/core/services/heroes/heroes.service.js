@@ -14,7 +14,7 @@ angular
       }
 
       /* object handle FETCH heroes standardized */
-      heroesPromiseFactory() {
+      GETLifeCycle() {
         return {
           data: undefined, 
           isFetchLoading: true

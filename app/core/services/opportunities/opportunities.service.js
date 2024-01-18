@@ -37,7 +37,7 @@ angular
         return opportunities.filter((o) => o.creatorID === this.#SIGNED_IN_USER_ID);
       }
 
-      opportunitiesPromiseFactory() {
+      GETLifeCycle() {
         return {
           data: undefined,
           isFetchLoading: true,

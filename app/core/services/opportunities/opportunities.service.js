@@ -4,17 +4,19 @@ angular
     "$resource",
     "$q",
     "JwtService",
+    'API_ENDPOINTS',
     class {
       #opportunities;
       #SIGNED_IN_USER_ID;
 
-      constructor($resource, $q, JwtService) {
+      constructor($resource, $q, JwtService, API_ENDPOINTS) {
         this.$q = $q;
         this.#SIGNED_IN_USER_ID = JwtService.getToken().value;
         this.$resource = $resource;
+        this.API_ENDPOINTS = API_ENDPOINTS
 
         this.#opportunities = $resource(
-          "http://localhost:3000/opportunities?_sort=createdAt&_order=desc"
+          API_ENDPOINTS.OPPORTUNITIES + "?_sort=createdAt&_order=desc"
         ).query();
       }
 
@@ -45,7 +47,7 @@ angular
       POST({ title, description }) {
         const opportunity = this.#StandardizeOpportunity({title,description});
 
-        return this.$resource("http://localhost:3000/opportunities")
+        return this.$resource(API_ENDPOINTS.OPPORTUNITIES)
           .save(opportunity)
           .$promise.then(() => this.#opportunities.unshift(opportunity));
       }

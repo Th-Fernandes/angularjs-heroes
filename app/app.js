@@ -28,7 +28,8 @@ angular
     }
   ])
   .constant('API_ENDPOINTS', {
-    HEROES: 'http://localhost:3000/heroes'
+    HEROES: 'http://localhost:3000/heroes',
+    OPPORTUNITIES: "http://localhost:3000/opportunities"
   })
   .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');

@@ -15,7 +15,7 @@ angular
       }
 
       function signIn({ email, password }) {
-        const queryUrl = `http://localhost:3000/heroes?email=${email}&password=${password}`  
+        const queryUrl = API_ENDPOINTS.HEROES + `?email=${email}&password=${password}`  
 
         return $resource(queryUrl).query().$promise
           .catch(() => $q.reject('API OFF'))

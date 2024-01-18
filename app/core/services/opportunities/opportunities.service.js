@@ -11,6 +11,8 @@ angular
       constructor($resource, $q, JwtService) {
         this.$q = $q;
         this.#SIGNED_IN_USER_ID = JwtService.getToken().value;
+        this.$resource = $resource;
+
         this.#opportunities = $resource(
           "http://localhost:3000/opportunities?_sort=createdAt&_order=desc"
         ).query();
@@ -38,6 +40,24 @@ angular
           data: undefined,
           isFetchLoading: true,
         };
+      }
+
+      POST({title, description}) {
+        const opportunity = this.#StandardizeOpportunity({title, description})
+
+        return this.$resource('http://localhost:3000/opportunities').save(opportunity).$promise
+          .then(() => this.#opportunities.push(opportunity))
+      }
+
+      #StandardizeOpportunity({title, description}) {
+        return {
+          id: uuidv4(),
+          createdAt: new Date().getTime(),
+          creatorID: this.#SIGNED_IN_USER_ID,
+          title,
+          description,
+          volunteers: [],
+        }
       }
     },
   ]);

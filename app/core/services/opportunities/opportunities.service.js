@@ -1,3 +1,6 @@
+import { GETFactory } from "../GETFactory.js";
+
+
 angular
   .module("myApp.opportunitiesService", [])
   .factory("OpportunitiesService", [
@@ -5,23 +8,18 @@ angular
     "$q",
     "JwtService",
     'API_ENDPOINTS',
-    class {
+    class OpportunitiesService extends GETFactory {
       #opportunities;
       #SIGNED_IN_USER_ID;
 
       constructor($resource, $q, JwtService, API_ENDPOINTS) {
+        super($resource, API_ENDPOINTS.OPPORTUNITIES + "?_sort=createdAt&_order=desc");
+        
         this.$q = $q;
         this.#SIGNED_IN_USER_ID = JwtService.getToken().value;
         this.$resource = $resource;
-        this.API_ENDPOINTS = API_ENDPOINTS
 
-        this.#opportunities = $resource(
-          API_ENDPOINTS.OPPORTUNITIES + "?_sort=createdAt&_order=desc"
-        ).query();
-      }
-
-      GET() {
-        return this.#opportunities.$promise;
+        this.#opportunities = this.GET();
       }
 
       getByCreatorId() {
@@ -37,18 +35,10 @@ angular
         return opportunities.filter((o) => o.creatorID === this.#SIGNED_IN_USER_ID);
       }
 
-      GETLifeCycle() {
-        return {
-          data: undefined,
-          isFetchLoading: true,
-        };
-      }
-
       POST({ title, description }) {
         const opportunity = this.#StandardizeOpportunity({title,description});
 
-        return this.$resource(API_ENDPOINTS.OPPORTUNITIES)
-          .save(opportunity)
+        return this.$resource(API_ENDPOINTS.OPPORTUNITIES).save(opportunity)
           .$promise.then(() => this.#opportunities.unshift(opportunity));
       }
 

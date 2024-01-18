@@ -9,7 +9,7 @@ angular
 
       constructor($resource, API_ENDPOINTS) {
         super($resource, API_ENDPOINTS.HEROES);
-        this.#heroes = $resource(API_ENDPOINTS.HEROES).query();
+        this.#heroes = this.GET();
       }
 
       findByUuid(uuid) {

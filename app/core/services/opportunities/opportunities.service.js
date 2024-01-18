@@ -36,7 +36,7 @@ angular
           const opportunity = new Opportunity({title, description});
           
           return $resource(API_ENDPOINTS.OPPORTUNITIES).save(opportunity)
-            .$promise.then(() => this.#opportunities.unshift(opportunity));
+            .$promise.then(() => this.#opportunities.then(o => o.unshift(opportunity)));
         }
       }
 

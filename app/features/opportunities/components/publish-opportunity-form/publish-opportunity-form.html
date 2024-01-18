@@ -1,0 +1,46 @@
+<section class="flex flex-col items-center ">
+  
+  <form 
+    ng-submit="$ctrl.onSubmitOpportunity()" 
+    name="publishOpportunityForm" 
+    ng-model-options="{debounce: 400}"
+    class="bg-gray-100 shadow-md p-4"
+  >
+  <h2 class="text-2xl font-bold">Publish opportunity</h2>
+  <small ng-if="$ctrl.opportunityPost.error" class="font-bold text-red-400">ERROR: {{$ctrl.opportunityPost.error}}</small>
+    <div>
+      <label for="">Title</label>
+      <input
+        name="title"
+        type="text" 
+        ng-model="$ctrl.opportunity.title"
+        ng-minlength="3"
+        ng-required="true"
+      />
+      <ng-messages for="publishOpportunityForm.title.$error" class="font-bold text-red-400">
+        <ng-message when="minlength">Your title is too small!</ng-message>
+      </ng-messages>
+    </div>
+
+    <div>
+      <label for="opportunityDescription">Description</label>
+      <textarea 
+        name="description" 
+        id="opportunityDescription"
+        ng-model="$ctrl.opportunity.description"
+        ng-minlength="30"
+        ng-required="true"
+      >
+      </textarea>
+      <ng-messages for="publishOpportunityForm.description.$error" class="font-bold text-red-400">
+        <ng-message when="minlength">Your description must have at least 30 characters.</ng-message>
+      </ng-messages>
+    </div>
+    <button 
+      ng-disabled="publishOpportunityForm.$invalid" 
+      class="disabled:cursor-not-allowed"
+    >
+      {{$ctrl.opportunityPost.isLoading ? 'Loading...' :  'Publish!'}}   
+    </button>
+  </form>
+</section>

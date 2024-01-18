@@ -8,9 +8,9 @@ angular
         constructor(HeroesService, PageErrorsHandlerService) {
           this.hero = HeroesService.heroesPromiseFactory();
 
-          HeroesService.heroes.$promise
+          HeroesService.GET()
             .then(heroes => this.hero.data = heroes.at(-1))
-            // .catch(() => PageErrorsHandlerService.notifyError())
+            .catch(() => PageErrorsHandlerService.notifyError())
             .finally(() => this.hero.isFetchLoading = false);
         }
       }

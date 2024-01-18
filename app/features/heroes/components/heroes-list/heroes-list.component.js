@@ -7,7 +7,7 @@ angular
       function (HeroesService, PageErrorsHandlerService) {
         this.heroes = HeroesService.heroesPromiseFactory();
         
-        HeroesService.heroes.$promise
+        HeroesService.GET()
           .catch(() => PageErrorsHandlerService.notifyError())
           .then(heroes => this.heroes.data = heroes)
           .finally(() => this.heroes.isFetchLoading = false)

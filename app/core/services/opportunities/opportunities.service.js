@@ -20,7 +20,7 @@ angular
         ).query();
       }
 
-      get() {
+      GET() {
         return this.#opportunities.$promise;
       }
 

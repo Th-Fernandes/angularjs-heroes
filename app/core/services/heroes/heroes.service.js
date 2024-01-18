@@ -3,24 +3,26 @@ angular
   .factory('HeroesService', [
     '$resource', 'API_ENDPOINTS',
     class HeroesService {
+      #heroes;
+
       constructor($resource, API_ENDPOINTS) {
-        this.heroes = $resource(API_ENDPOINTS.HEROES).query();
+        this.#heroes = $resource(API_ENDPOINTS.HEROES).query();
+      }
+
+      GET() {
+        return this.#heroes.$promise;
       }
 
       /* object handle FETCH heroes standardized */
       heroesPromiseFactory() {
-        return  {
+        return {
           data: undefined, 
           isFetchLoading: true
         }
       }
 
-      addNewHero(hero) {
-        this.heroes.push({...hero, login: { uuid: uuidv4() }});
-      }
-
       findByUuid(uuid) {
-        return this.heroes.$promise.then(heroes => {
+        return this.#heroes.$promise.then(heroes => {
           return heroes.find(hero => hero.id === uuid)
         })
       }

@@ -25,14 +25,14 @@ angular
       getByCreatorId() {
         return this.#opportunities.$promise
           .then((opportunities) => {
-            const signedInUserOpportunities = this.#filterByCreatorId(opportunities)
+            const signedInUserOpportunities = this.#filterByCreatorId(opportunities);
             return this.$q.resolve(signedInUserOpportunities);
           })
-          .catch(() => $q.reject('API is not responding'));
+          .catch(() => $q.reject("API is not responding"));
       }
 
       #filterByCreatorId(opportunities) {
-        return opportunities.filter(o => o.creatorID === this.#SIGNED_IN_USER_ID)
+        return opportunities.filter((o) => o.creatorID === this.#SIGNED_IN_USER_ID);
       }
 
       opportunitiesPromiseFactory() {
@@ -42,14 +42,15 @@ angular
         };
       }
 
-      POST({title, description}) {
-        const opportunity = this.#StandardizeOpportunity({title, description})
+      POST({ title, description }) {
+        const opportunity = this.#StandardizeOpportunity({title,description});
 
-        return this.$resource('http://localhost:3000/opportunities').save(opportunity).$promise
-          .then(() => this.#opportunities.push(opportunity))
+        return this.$resource("http://localhost:3000/opportunities")
+          .save(opportunity)
+          .$promise.then(() => this.#opportunities.unshift(opportunity));
       }
 
-      #StandardizeOpportunity({title, description}) {
+      #StandardizeOpportunity({ title, description }) {
         return {
           id: uuidv4(),
           createdAt: new Date().getTime(),
@@ -57,7 +58,7 @@ angular
           title,
           description,
           volunteers: [],
-        }
+        };
       }
     },
   ]);

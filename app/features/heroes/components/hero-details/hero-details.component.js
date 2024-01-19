@@ -5,7 +5,7 @@ angular
     controller: [
       '$routeParams', 'HeroesService', 'PageErrorsHandlerService', 
       function($routeParams, HeroesService, PageErrorsHandlerService) {
-        this.hero = HeroesService.heroesPromiseFactory();
+        this.hero = HeroesService.GETLifeCycle();
 
         HeroesService.findByUuid($routeParams.uuid)
           .catch(() => PageErrorsHandlerService.notifyError())

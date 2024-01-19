@@ -1,3 +1,6 @@
+import { GETFactory } from "../GETFactory.js";
+
+
 angular
   .module("myApp.opportunitiesService", [])
   .factory("OpportunitiesService", [
@@ -5,62 +8,49 @@ angular
     "$q",
     "JwtService",
     'API_ENDPOINTS',
-    class {
-      #opportunities;
-      #SIGNED_IN_USER_ID;
+    function($resource, $q, JwtService, API_ENDPOINTS) {
+      const SIGNED_IN_USER_ID = JwtService.getToken().value
 
-      constructor($resource, $q, JwtService, API_ENDPOINTS) {
-        this.$q = $q;
-        this.#SIGNED_IN_USER_ID = JwtService.getToken().value;
-        this.$resource = $resource;
-        this.API_ENDPOINTS = API_ENDPOINTS
-
-        this.#opportunities = $resource(
-          API_ENDPOINTS.OPPORTUNITIES + "?_sort=createdAt&_order=desc"
-        ).query();
+      class OpportunitiesService extends GETFactory {
+        #opportunities;
+  
+        constructor() {
+          super($resource, API_ENDPOINTS.OPPORTUNITIES + "?_sort=createdAt&_order=desc");
+          this.#opportunities = this.GET();
+        }
+  
+        getByCreatorId() {
+          return this.#opportunities.$promise
+            .then((opportunities) => {
+              const signedInUserOpportunities = this.#filterByCreatorId(opportunities);
+              return $q.resolve(signedInUserOpportunities);
+            })
+            .catch(() => $q.reject("API is not responding"));
+        }
+  
+        #filterByCreatorId(opportunities) {
+          return opportunities.filter((o) => o.creatorID === SIGNED_IN_USER_ID);
+        }
+  
+        POST({ title, description }) {
+          const opportunity = new Opportunity({title, description});
+          
+          return $resource(API_ENDPOINTS.OPPORTUNITIES).save(opportunity)
+            .$promise.then(() => this.#opportunities.then(o => o.unshift(opportunity)));
+        }
       }
 
-      get() {
-        return this.#opportunities.$promise;
+      class Opportunity {
+        constructor({title, description}) {
+            this.id = uuidv4(),
+            this.createdAt = new Date().getTime(),
+            this.creatorID = SIGNED_IN_USER_ID,
+            this.title = title,
+            this.description = description,
+            this.volunteers = []
+          }
       }
 
-      getByCreatorId() {
-        return this.#opportunities.$promise
-          .then((opportunities) => {
-            const signedInUserOpportunities = this.#filterByCreatorId(opportunities);
-            return this.$q.resolve(signedInUserOpportunities);
-          })
-          .catch(() => $q.reject("API is not responding"));
-      }
-
-      #filterByCreatorId(opportunities) {
-        return opportunities.filter((o) => o.creatorID === this.#SIGNED_IN_USER_ID);
-      }
-
-      opportunitiesPromiseFactory() {
-        return {
-          data: undefined,
-          isFetchLoading: true,
-        };
-      }
-
-      POST({ title, description }) {
-        const opportunity = this.#StandardizeOpportunity({title,description});
-
-        return this.$resource(API_ENDPOINTS.OPPORTUNITIES)
-          .save(opportunity)
-          .$promise.then(() => this.#opportunities.unshift(opportunity));
-      }
-
-      #StandardizeOpportunity({ title, description }) {
-        return {
-          id: uuidv4(),
-          createdAt: new Date().getTime(),
-          creatorID: this.#SIGNED_IN_USER_ID,
-          title,
-          description,
-          volunteers: [],
-        };
-      }
+      return new OpportunitiesService()
     },
   ]);

@@ -1,26 +1,19 @@
+import { GETFactory } from "../GETFactory.js"
+
 angular
   .module('myApp.heroesService.service', [])
   .factory('HeroesService', [
     '$resource', 'API_ENDPOINTS',
-    class HeroesService {
+    class HeroesService extends GETFactory {
+      #heroes;
+
       constructor($resource, API_ENDPOINTS) {
-        this.heroes = $resource(API_ENDPOINTS.HEROES).query();
-      }
-
-      /* object handle FETCH heroes standardized */
-      heroesPromiseFactory() {
-        return  {
-          data: undefined, 
-          isFetchLoading: true
-        }
-      }
-
-      addNewHero(hero) {
-        this.heroes.push({...hero, login: { uuid: uuidv4() }});
+        super($resource, API_ENDPOINTS.HEROES);
+        this.#heroes = this.GET();
       }
 
       findByUuid(uuid) {
-        return this.heroes.$promise.then(heroes => {
+        return this.#heroes.$promise.then(heroes => {
           return heroes.find(hero => hero.id === uuid)
         })
       }

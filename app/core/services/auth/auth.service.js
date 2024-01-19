@@ -8,8 +8,7 @@ angular
           JwtService.onRouteChanging();
           const { isUnavailable } = JwtService.getToken();
 
-          if(next.$$route?.private && isUnavailable) 
-            $location.path('/sign-in');
+          if(next.$$route?.private && isUnavailable) $location.path('/sign-in');
         })
       }
 

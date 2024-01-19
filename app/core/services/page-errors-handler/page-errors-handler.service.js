@@ -1,12 +1,16 @@
 angular
   .module('myApp.core.services.pageErrorsHandlerService', [])
   .factory('PageErrorsHandlerService', [
+    '$rootScope',
     class {
       #error = null;
+
+      constructor($rootScope) {
+        this.$rootScope = $rootScope;
+      }
       
-      clearPreviousErrors() {
-        this.#error = null
-        console.log(this.#error)
+      clearPreviousErrorsOnRouteChanging() {
+        this.$rootScope.$on("$routeChangeStart", () => this.#error = null )
       }
 
       notifyError() {

@@ -1,8 +1,7 @@
 export class GETFactory {
   #data;
 
-  constructor($resource, endpoint, $location) {
-    console.log($location)
+  constructor($resource, endpoint) {
     this.#data = $resource(endpoint).query();
   }
   

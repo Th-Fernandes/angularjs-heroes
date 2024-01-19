@@ -3,8 +3,7 @@ angular
   .factory('AuthService', [
     '$rootScope', '$location', '$q', 'JwtService', '$resource', 'API_ENDPOINTS',
     function($rootScope, $location, $q , JwtService, $resource, API_ENDPOINTS,) {
-      function redirectUnauthorizedUser() { 
-        
+      function redirectUnauthorizedUser() {    
         $rootScope.$on('$routeChangeStart', (event, next) => {
           JwtService.onRouteChanging();
           const { isUnavailable } = JwtService.getToken();

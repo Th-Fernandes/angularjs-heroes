@@ -20,7 +20,7 @@ angular
         }
   
         getByCreatorId() {
-          return this.#opportunities.$promise
+          return this.#opportunities
             .then((opportunities) => {
               const signedInUserOpportunities = this.#filterByCreatorId(opportunities);
               return $q.resolve(signedInUserOpportunities);

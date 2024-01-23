@@ -8,7 +8,12 @@
       <p>{{opportunity.description}}</p>
       <small>There is {{opportunity.volunteers.length}} applied volunteers</small>
       <small class="block">created at {{opportunity.createdAt | millisecondsToDate}}</small>
-      <button class="border border-gray-400 w-full rounded-lg p-2 mt-4 hover:bg-[#36558F] hover:text-white transition-all font-bold">Apply</button>
+      <button 
+        ng-click="$ctrl.addVolunteerOn(opportunity)"
+        class="border border-gray-400 w-full rounded-lg p-2 mt-4 hover:bg-[#36558F] hover:text-white transition-all font-bold"
+      >
+        Apply
+      </button>
      </li>
   </ul>
 </section>

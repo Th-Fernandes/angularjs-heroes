@@ -1,5 +1,7 @@
 import { AuthService } from "./auth.service.js";
+import { JWTService } from "./jwt.service.js";
 
 angular
-  .module("myApp.auth", ["myApp.auth.jwtService"])
-  .factory("AuthService", AuthService);
+  .module("myApp.auth", [])
+  .factory("AuthService", AuthService)
+  .factory("JwtService", JWTService);

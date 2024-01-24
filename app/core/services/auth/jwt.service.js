@@ -1,64 +1,57 @@
-angular.module("myApp.auth.jwtService", []).factory("JwtService", [
-  "$rootScope",
-  "$window",
-  function ($rootScope, $window) {
-    const USER_TOKEN_ITEM_KEY = 'JWT';
-    let SIGNED_IN_USER_ID = ''
+export class JWTService {
+  #USER_TOKEN_ITEM_KEY = 'JWT';
+  #SIGNED_IN_USER_ID = '';
 
-    function storeOnClient(signedInUserId) {
-      SIGNED_IN_USER_ID = signedInUserId
-      const userToken = createUserToken();
-      localStorage.setItem(USER_TOKEN_ITEM_KEY, JSON.stringify(userToken));
-    }
+  constructor($window, $rootScope) {
+    this.$window = $window;
+    this.$rootScope = $rootScope;
+  }
 
-    function createUserToken() {
-      const DAY_IN_MILlISECONDS = 86400000; 
-      return {
-        value: SIGNED_IN_USER_ID,
-        expiry: getDaysInMilliseconds() + DAY_IN_MILlISECONDS,
-      };
-    }
+  storeOnClient(signedInUserId) {
+    this.#SIGNED_IN_USER_ID = signedInUserId;
+    const userToken = this.#createUserToken();
+    localStorage.setItem(this.#USER_TOKEN_ITEM_KEY, JSON.stringify(userToken));
+  }
 
-    function getDaysInMilliseconds() {
-      return new Date().getTime()
-    }
+  #createUserToken() {
+    const DAY_IN_MILlISECONDS = 86400000; 
+    return {
+      value: this.#SIGNED_IN_USER_ID,
+      expiry: this.#getDaysInMilliseconds() + DAY_IN_MILlISECONDS,
+    };
+  }
 
-    function onRouteChanging() {
-      const token = getToken();
-      if ( token.isUnavailable ) return null;
+  #getDaysInMilliseconds() {
+    return new Date().getTime()
+  }
+
+  onRouteChanging() {
+    const token = this.getToken();
+    if ( token.isUnavailable ) return null;
+    this.#provideUserTokenGlobally();
       
-      provideUserTokenGlobally();
+    if ( token.isExpired() ) this.removeToken();
+    return token.value;
+  }
+    
+  #provideUserTokenGlobally() {
+    if(!this.$rootScope.userToken) 
+      this.$rootScope.userToken = this.$window.localStorage.getItem(this.#USER_TOKEN_ITEM_KEY);
+  }
 
-      if ( token.isExpired() ) removeToken();
-      return token.value;
-    }
-
-    function provideUserTokenGlobally() {
-      if(!$rootScope.userToken) 
-       $rootScope.userToken = $window.localStorage.getItem(USER_TOKEN_ITEM_KEY);
-    }
-
-    function getToken() {
-      const userTokenStr = $window.localStorage.getItem(USER_TOKEN_ITEM_KEY);
-      return {
-        ...JSON.parse( userTokenStr),
-        isUnavailable: !userTokenStr,
-        isExpired() {
-          return getDaysInMilliseconds() > this.expiry
-        }
+  getToken() {
+    const userTokenStr = this.$window.localStorage.getItem(this.#USER_TOKEN_ITEM_KEY);
+    return {
+      ...JSON.parse(userTokenStr),
+      isUnavailable: !userTokenStr,
+      isExpired: () => {
+        return this.#getDaysInMilliseconds() > this.expiry
       }
     }
+  }
     
-    function removeToken() {
-      $window.localStorage.removeItem("JWT");
-      $rootScope.userToken = null;
-    }   
-
-    return {
-      storeOnClient,
-      onRouteChanging,
-      removeToken,
-      getToken
-    };
-  },
-]);
+  removeToken() {
+    this.$window.localStorage.removeItem("JWT");
+    this.$rootScope.userToken = null;
+  }  
+}

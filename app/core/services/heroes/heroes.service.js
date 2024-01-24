@@ -9,7 +9,7 @@ export class HeroesService extends GETFactory {
   }
   
   findByUuid(uuid) {
-    return this.#heroes.$promise.then((heroes) => {
+    return this.#heroes.then((heroes) => {
       return heroes.find((hero) => hero.id === uuid);
     });
   }

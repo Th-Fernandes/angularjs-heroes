@@ -38,6 +38,16 @@ angular
           return $resource(API_ENDPOINTS.OPPORTUNITIES).save(opportunity)
             .$promise.then(() => this.#opportunities.then(o => o.unshift(opportunity)));
         }
+
+        PATCH(opportunityId, modifiedVolunteers) {
+          const apiRequest = $resource(
+              API_ENDPOINTS.OPPORTUNITIES + `/${opportunityId}`,
+              null,
+              { update: { method: "PATCH" } }
+          );
+
+          return apiRequest.update({ volunteers: modifiedVolunteers }).$promise
+        }
       }
 
       class Opportunity {

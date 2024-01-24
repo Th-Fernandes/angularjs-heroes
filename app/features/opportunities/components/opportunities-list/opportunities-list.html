@@ -3,16 +3,28 @@
   <h2 ng-if="$ctrl.opportunities.isFetchLoading">Loading...</h2>
   <!-- ON RESOLVE-->
   <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-    <li ng-repeat="opportunity in $ctrl.opportunities.data" class="bg-blue-100 p-2 sm:p-4 rounded-lg">
+    <li 
+      ng-repeat="opportunity in $ctrl.opportunities.data" 
+      class="bg-blue-100 p-2 sm:p-4 rounded-lg"
+    >
       <h3 class="text-lg font-bold">{{opportunity.title}}</h3>
       <p>{{opportunity.description}}</p>
       <small>There is {{opportunity.volunteers.length}} applied volunteers</small>
       <small class="block">created at {{opportunity.createdAt | millisecondsToDate}}</small>
       <button 
+        ng-if="!$ctrl.toggleButton(opportunity.volunteers)"
         ng-click="$ctrl.addVolunteerOn(opportunity)"
         class="border border-gray-400 w-full rounded-lg p-2 mt-4 hover:bg-[#36558F] hover:text-white transition-all font-bold"
       >
         Apply
+      </button>
+
+      <button 
+        ng-if="$ctrl.toggleButton(opportunity.volunteers)"
+        class="border border-gray-400 w-full rounded-lg p-2 mt-4 text-gray-400 font-bold cursor-not-allowed"
+        ng-disabled="true"  
+        >
+        Applied
       </button>
      </li>
   </ul>

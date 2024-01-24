@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@core": ["./app/core"]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

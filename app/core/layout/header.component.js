@@ -5,7 +5,7 @@ angular
     controller: [
       '$rootScope', 'AuthService',
       function($rootScope, AuthService) {
-        this.signOut = AuthService.signOut
+        this.signOut = () => AuthService.signOut()
 
         $rootScope.$watch('userToken', value => {
          value ? this.isUserSignedIn = true : this.isUserSignedIn = false

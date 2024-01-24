@@ -64,6 +64,19 @@
       "phoneNumber": "21999999999",
       "email": "johnDoe@heroes.com",
       "password": "ABC12340"
+    },
+    {
+      "id": "bb57b986-518d-4089-b214-0106fee3240d",
+      "name": {
+        "first": "thiago",
+        "last": "Fernandes"
+      },
+      "email": "thiagoAjfcarvalho@gmail.com",
+      "photo": "https://example.com",
+      "gender": "female",
+      "codename": "asdasdasdasdasd",
+      "phoneNumber": "21996518546",
+      "password": "asdasdasdasdasdasd"
     }
   ],
   "opportunities": [
@@ -73,7 +86,9 @@
       "creatorID": "2e2fb5e9-c905-4800-9f7a-4d98e69b080f",
       "title": "Police officer for a day",
       "description": "imagine a cool description here",
-      "volunteers": []
+      "volunteers": [
+        "2e2fb5e9-c905-4800-9f7a-4d98e69b080f"
+      ]
     },
     {
       "id": "32e89876-2767-442d-9507-31040c80d623",
@@ -81,6 +96,16 @@
       "creatorID": "2e2fb5e9-c905-4800-9f7a-4d98e69b080fa",
       "title": "the league - intern",
       "description": "imagine a cool description here",
+      "volunteers": [
+        "2e2fb5e9-c905-4800-9f7a-4d98e69b080f"
+      ]
+    },
+    {
+      "id": "506d12bf-fedf-41bf-84dc-46da8ab8d9b7",
+      "createdAt": 1706104456479,
+      "creatorID": "2e2fb5e9-c905-4800-9f7a-4d98e69b080f",
+      "title": "Dirigente",
+      "description": "SDHJ ASDASD HJKASD HJ HJKASDASD HJ HJKASD HJKASD HJKASD HJKASD HJKASD HJKASD HJASD HJ AHJKSD HJKS HJKASD HJASD HJKS HJKASDH JKSD HJSDH JASD HJASD HJASDJ HDJSASD HJ HJKSD HAJKS",
       "volunteers": []
     }
   ]

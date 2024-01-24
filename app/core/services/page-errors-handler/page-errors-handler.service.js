@@ -1,24 +1,19 @@
-angular
-  .module('myApp.core.services.pageErrorsHandlerService', [])
-  .factory('PageErrorsHandlerService', [
-    '$rootScope',
-    class {
-      #error = null;
+export class PageErrorsHandlerService {
+  #error = null;
 
-      constructor($rootScope) {
-        this.$rootScope = $rootScope;
-      }
-      
-      clearPreviousErrorsOnRouteChanging() {
-        this.$rootScope.$on("$routeChangeStart", () => this.#error = null )
-      }
+  constructor($rootScope) {
+    this.$rootScope = $rootScope;
+  }
+  
+  get hasErrors() {
+    return this.#error !== null;
+  }
+  
+  notifyError() {
+    this.#error = true;
+  }
 
-      notifyError() {
-        this.#error = true;
-      }
-
-      get hasErrors() {
-        return this.#error !== null 
-      }
-    }
-  ])
+  clearPreviousErrorsOnRouteChanging() {
+    this.$rootScope.$on("$routeChangeStart", () => (this.#error = null));
+  }
+}

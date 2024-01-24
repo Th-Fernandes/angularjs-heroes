@@ -17,14 +17,12 @@ angular
     "myApp.core.components",
     "myApp.core.services.pageErrorsHandlerService",
   ])
-  .run([
-    "AuthService",
-    "PageErrorsHandlerService",
-    (AuthService, PageErrorsHandlerService) => {
+  .run(
+    function (AuthService, PageErrorsHandlerService) {
       AuthService.redirectUnauthorizedUser();
       PageErrorsHandlerService.clearPreviousErrorsOnRouteChanging()
     },
-  ])
+  )
   .constant("API_ENDPOINTS", {
     HEROES: "http://localhost:3000/heroes",
     OPPORTUNITIES: "http://localhost:3000/opportunities",

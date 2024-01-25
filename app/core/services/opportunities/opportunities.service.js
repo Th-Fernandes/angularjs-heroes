@@ -1,6 +1,5 @@
 import { GETFactory } from "../GETFactory.js";
 
-
 angular
   .module("myApp.opportunitiesService", [])
   .factory("OpportunitiesService", [

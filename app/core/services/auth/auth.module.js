@@ -1,6 +1,7 @@
-'use strict';
+import { AuthService } from "./auth.service.js";
+import { JWTService } from "./jwt.service.js";
 
-angular.module('myApp.auth', [
-  'myApp.auth.authService',
-  'myApp.auth.jwtService',
-])
+angular
+  .module("myApp.auth", [])
+  .factory("AuthService", AuthService)
+  .factory("JwtService", JWTService);

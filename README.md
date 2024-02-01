@@ -1,9 +1,12 @@
-# AngularJs Heroes - Find out the best oportunities
+# [LEGACY] AngularJs Heroes - Find out the best oportunities
+<p>
+  this project was refactored to be used into laravel. The new version is available at
+  <a href="https://github.com/Th-Fernandes/angularjs-heroes-laravel">this repo.</a>
 
+</p>
 <p>
   AngularJs Heroes is a platform to register and apply for heroes jobs opportunities. Heroes 
   publish their opportunities and the freelancer heroes applies on it. Easy to use, 100% free.
-
 </p>
 
 ## Features
